@@ -413,6 +413,7 @@ on fs
 # SENSORS
 # Fingerprint
     mkdir /dev/validity 0770 system system
+    mkdir /data/validity 0770 system system
 # Fingerprint_sensor
     chown system radio /sys/class/fingerprint/fingerprint/type_check
 # Accelerometer_sensor
@@ -724,6 +725,13 @@ service rtc_log /system/bin/rtc_log.sh
 service umount_service /system/bin/umount -D /preload
     disabled
     oneshot
+
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group input
+
+
 
 on property:persist.sys.storage_preload=1
     mount ext4 /dev/block/platform/15540000.dwmmc0/by-name/HIDDEN /preload nosuid nodev noatime wait ro
