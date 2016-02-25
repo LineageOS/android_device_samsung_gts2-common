@@ -499,3 +499,4 @@ service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF0000000000000
     class main
     user drmrpc
     group drmrpc
+    oneshot
