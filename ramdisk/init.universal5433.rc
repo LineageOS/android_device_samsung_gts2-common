@@ -71,6 +71,12 @@ on post-fs-data
     mkdir /data/firmware 0770 media system
     chown media system /data/firmware
 
+    # Vibrations
+    chown system system /sys/devices/virtual/timed_output/vibrator/enable
+    chown system system /sys/devices/virtual/timed_output/vibrator/intensity
+    # Default to 90% vibrator strength
+    write /sys/devices/virtual/timed_output/vibrator/intensity 9000
+
 on boot
     # Reduce reserved lowmem from ~48MB to ~12MB
     write /proc/sys/vm/lowmem_reserve_ratio "128 128"
