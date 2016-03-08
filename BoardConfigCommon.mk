@@ -1,4 +1,4 @@
-LOCAL_PATH := device/samsung/treltexx
+LOCAL_PATH := device/samsung/trelte-common
 
 TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
@@ -115,7 +115,7 @@ BOARD_USE_VP8ENC_SUPPORT := true
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # Hardware
-BOARD_HARDWARE_CLASS += device/samsung/treltexx/cmhw
+BOARD_HARDWARE_CLASS += device/samsung/trelte-common/cmhw
 
 # WIFI
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
@@ -163,4 +163,4 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/ramdisk/fstab.universal5433
 
 # SELinux
 BOARD_SEPOLICY_DIRS := \
-	device/samsung/treltexx/sepolicy
+	device/samsung/trelte-common/sepolicy
