@@ -1,7 +1,3 @@
-### Bluetooth
-vendor/firmware/bcm4358A0_V0033.0000.hcd
-vendor/firmware/bcm4358A1_V0051.0080.hcd
-
 ### Wifi
 etc/wifi/bcmdhd_apsta.bin
 etc/wifi/bcmdhd_ibss.bin
@@ -16,7 +12,6 @@ etc/wifi/nvram_net.txt_a0
 etc/wifi/nvram_net.txt_murata
 
 ### NFC
-etc/sec_s3fwrn5_rfreg_thl.bin
 etc/sec_s3fwrn5_rfreg.bin
 lib/hw/nfc_nci.universal5433.so
 vendor/firmware/sec_s3fwrn5_firmware.bin
