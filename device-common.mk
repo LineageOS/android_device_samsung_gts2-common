@@ -49,7 +49,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 ###########################################################
-### GRAPHICS
+### DISPLAY
 ###########################################################
 
 PRODUCT_AAPT_CONFIG := normal
@@ -70,6 +70,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libstlport
+
+# hardware/samsung/AdvancedDisplay (MDNIE)
+PRODUCT_PACKAGES += \
+    AdvancedDisplay
 
 ###########################################################
 ### RADIO
