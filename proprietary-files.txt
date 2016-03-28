@@ -99,7 +99,6 @@ lib/hw/sensorhubs.universal5433.so
 ### Widevine
 lib/liboemcrypto.so
 vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libWVStreamControlAPI_L1.so
 vendor/lib/libdrmdecrypt.so
