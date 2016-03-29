@@ -194,14 +194,14 @@ const struct route_config camcorder_headphones = {
 const struct route_config voice_rec_speaker = {
     "voice-rec-speaker",
     "device-speaker",
-    "voice-rec-two-mic",
+    "voice-rec-mic",
     "device-builtin-mic",
 };
 
 const struct route_config voice_rec_headphones = {
     "voice-rec-headphones",
     "device-headphones",
-    "voice-rec-two-mic",
+    "voice-rec-mic",
     "device-builtin-mic",
 };
 
@@ -215,22 +215,22 @@ const struct route_config voice_rec_headset = {
 const struct route_config communication_speaker = {
     "communication-speaker",
     "device-speaker",
-    "communication-speaker-two-mic",
-    "device-two-mic",
+    "communication-speaker-mic",
+    "device-builtin-mic",
 };
 
 const struct route_config communication_earpiece = {
     "communication-earpiece",
     "device-earpiece",
-    "communication-earpiece-two-mic",
-    "device-two-mic",
+    "communication-earpiece-mic",
+    "device-builtin-mic",
 };
 
 const struct route_config communication_headphones = {
     "communication-headphones",
     "device-headphones",
-    "communication-earpiece-two-mic",
-    "device-two-mic",
+    "communication-earpiece-mic",
+    "device-builtin-mic",
 };
 
 const struct route_config communication_headset = {
@@ -243,8 +243,8 @@ const struct route_config communication_headset = {
 const struct route_config speaker_and_headphones = {
     "speaker-and-headphones",
     "device-speaker",
-    "scenario-two-mic-speaker-default",
-    "device-two-mic",
+    "scenario-builtin-mic-default",
+    "device-builtin-mic",
 };
 
 const struct route_config bt_sco_carkit = {
