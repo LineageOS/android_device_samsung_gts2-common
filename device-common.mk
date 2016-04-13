@@ -10,9 +10,9 @@ PRODUCT_PACKAGES += \
     fstab.universal5433 \
     init.power.rc \
     init.samsung.rc \
+    init.wifi.rc \
     init.universal5433.rc \
     init.universal5433.usb.rc \
-    init.universal5433.wifi.rc \
     ueventd.universal5433.rc
 
 ###########################################################
@@ -78,6 +78,10 @@ PRODUCT_PACKAGES += \
 ###########################################################
 ### RADIO
 ###########################################################
+
+PRODUCT_PACKAGES += \
+    libxml2 \
+    libprotobuf-cpp-full
 
 PRODUCT_PACKAGES += \
     libsecril-client \
@@ -183,9 +187,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
 
-PRODUCT_PACKAGES += \
-    libdmitry
-
 ###########################################################
 ### CAMERA
 ###########################################################
@@ -228,13 +229,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     SamsungServiceMode
-
-###########################################################
-### SYMBOLS FOR BLOBS
-###########################################################
-
-PRODUCT_PACKAGES += \
-    libsamsung_symbols
 
 ###########################################################
 ### DEFAULT PROPS

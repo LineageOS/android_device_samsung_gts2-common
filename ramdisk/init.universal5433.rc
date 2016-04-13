@@ -1,26 +1,27 @@
 import init.universal5433.usb.rc
-import init.universal5433.wifi.rc
-import init.samsung.rc
 import init.modem.rc
-import init.power.rc
+import init.samsung.rc
+import init.wifi.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-    export LD_SHIM_LIBS "/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/lib/omx/libOMX.Exynos.AVC.Encoder.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so"
-
     mkdir /preload 0771 system system
+
+    # See storage config details at http://source.android.com/tech/storage/
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
-    symlink /sdcard1 /storage/sdcard1
-    symlink /sdcard1 /mnt/extSdCard
-    symlink /sdcard1 /external_sd
-    symlink /storage/usbdisk /mnt/usbdisk
+
+    export EXTERNAL_STORAGE /sdcard
+
+    #export SECONDARY_STORAGE /storage/extSdCard
 
     symlink /data/app /factory
+
 
     mkdir /efs 0771 radio system
     symlink /dev/block/mmcblk0p13 /dev/mbin0
@@ -31,14 +32,13 @@ on init
     mkdir /dev/socket/msockets 0751 system radio
     chown system radio /dev/socket/msockets
 
-on post-fs
-    # Increase max readahead size to 256 KB
-    write /sys/block/mmcblk0/queue/read_ahead_kb 256
-
 on post-fs-data
+    mkdir /data/media 0770 media_rw media_rw
+
     setprop vold.post_fs_data_done 1
 
     # Permissions Camera
+    mkdir /data/camera 0770 media system
     chown system radio /sys/class/camera/rear/rear_camfw
     chown system radio /sys/class/camera/rear/rear_camfw_full
     chown system radio /sys/class/camera/rear/rear_checkfw_user
@@ -50,6 +50,7 @@ on post-fs-data
     chown system radio /sys/class/camera/rear/isp_core
     chown system radio /sys/class/camera/rear/fw_update
     chown system radio /sys/class/camera/flash/rear_flash
+    chown media system /sys/class/camera/flash/rear_torch_flash
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
     chown system radio /sys/class/camera/ois/selftest
@@ -57,6 +58,17 @@ on post-fs-data
     chown system radio /sys/class/camera/ois/ois_rawdata
     chown system radio /sys/class/camera/ois/oisfw
     chown system radio /sys/class/camera/ois/ois_diff
+
+    #Private Mode
+    mkdir /mnt/shell/privatemode 0700 system system
+    mkdir /storage/Private 0000 system system
+    mkdir /data/privatemode 0770 system system
+    chown system system /data/privatemode
+    restorecon /data/privatemode
+
+# Audio
+    mkdir /data/firmware 0770 media system
+    chown media system /data/firmware
 
 on boot
     # Reduce reserved lowmem from ~48MB to ~12MB
@@ -73,8 +85,11 @@ on boot
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
+# MSP FactoryApp
+    mkdir /efs/FactoryApp 0775 system system
+
     # SSWAP
-    write /proc/sys/vm/swappiness 130
+    write /proc/sys/vm/swappiness 190
 
     # For kernel lock in BT/WiFi race condtion
     chmod 0600 /dev/btlock
@@ -90,9 +105,6 @@ on boot
 
     #setprop ro.radio.noril yes
 
-    # Allow to access debugfs for system:system
-    chown system system /sys/kernel/debug
-
     # Set up kernel tracing, but disable it by default
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
     write /sys/kernel/debug/tracing/tracing_on 0
@@ -107,8 +119,7 @@ on boot
 
 # DRK permission
     mkdir /efs/prov 0770 radio system
-    chown radio system /efs/prov_data
-    chmod 0770 /efs/prov_data
+    mkdir /efs/prov_data 0770 radio system
     chown radio system /efs/prov_data/dev_root
     chmod 0770 /efs/prov_data/dev_root
     chown radio system /efs/prov_data/knox
@@ -303,32 +314,16 @@ on boot
 # MIF
     write /sys/module/modem_modemctl_device_m74xx/parameters/cp_watchdog_enable 1
 
-    # Radio
-    chmod 0644 /proc/cmdline
-
-on charger
-# Set cpu governor to powersave while in charging mode
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
-
-# EHCI runtime enable for LPA
-    write /sys/devices/platform/power/control auto
-
-# Do not set any USB mode while charging
-    setprop sys.usb.config charging
-
 on fs
     mount_all /fstab.universal5433
+    setprop ro.crypto.fuse_sdcard true
 
     # For Absolute Persistence Partition
     mkdir /persdata 0755 system system
     mkdir /persdata/absolute 0750 system system
 
     wait /dev/block/mmcblk0p16
-    # check_fs is not supported on CM
-    #check_fs /dev/block/mmcblk0p16 ext4
+    check_fs /dev/block/mmcblk0p16 ext4
     mount ext4 /dev/block/mmcblk0p16 /persdata/absolute nosuid nodev barrier=1
 
     chown system system /persdata
@@ -337,8 +332,8 @@ on fs
     chmod 0750 /persdata/absolute
 
 # MTP permission
-    chmod 0660 /dev/mtp_usb
-    chown system mtp /dev/mtp_usb
+    chmod 0660 /dev/usb_mtp_gadget
+    chown system mtp /dev/usb_mtp_gadget
 
 # terminal mode
     chmod 0660 /sys/class/android_usb/android0/terminal_version
@@ -358,10 +353,6 @@ on fs
 # Permissions for backlight
     chown system system /sys/class/backlight/panel/brightness
     chown system system /sys/class/backlight/panel/auto_brightness
-
-# Permissions for torch
-    chown system camera /sys/class/leds/torch-sec1/brightness
-    chmod 0660 /sys/class/leds/torch-sec1/brightness
 
 # Permissions for LCD
     chown system radio /sys/class/lcd/panel/manufacture_code
@@ -387,7 +378,6 @@ on fs
     chown system radio /sys/class/sec/sec_touchkey/flip_mode
     chown system radio /sys/class/sec/sec_touchkey/boost_level
     chown system system /sys/class/sec/sec_touchkey/input/enabled
-    chown system system /sys/class/sec/sec_touchkey/keypad_enabled
 
 # Permissions for epen
     chown system radio /sys/class/sec/sec_epen/epen_firm_update
@@ -402,32 +392,25 @@ on fs
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
     write /sys/class/sec/sec_key/wakeup_keys 116,172
-    chown system system /sys/devices/gpio_keys.9/input/input7/enabled
-    chown system system /sys/devices/gpio_keys.10/input/input8/enabled
-    chown system system /sys/devices/gpio_keys.11/input/input9/enabled
 
 # GPS
     chown root system /sys/class/sec/gps/GPS_PWR_EN/value
     chmod 0664 /sys/class/sec/gps/GPS_PWR_EN/value
-    mkdir /data/gps 0771 system system
-    chown system system /data/gps
     mkdir /data/system 0771 system system
     chown system system /data/system
     mkdir /data/system/gps 0771 system system
     chown system system /data/system/gps
-    rm /data/gps_started
-    rm /data/glonass_started
-    rm /data/beidou_started
-    rm /data/smd_started
-    rm /data/sv_cno.info
+    rm /data/system/gps/gps_started
+    rm /data/system/gps/glonass_started
+    rm /data/system/gps/beidou_started
+    rm /data/system/gps/smd_started
+    rm /data/system/gps/sv_cno.info
 
 # Audio (Earjack)
     chown system radio /sys/class/audio/earjack/select_jack
     chown system radio /sys/class/audio/earjack/key_state
     chown system radio /sys/class/audio/earjack/state
     chown system radio /sys/class/dsm/max98504/dsm_log
-    mkdir /data/firmware 0770 media system
-    chown media system /data/firmware
 
 # Permissions for System LSI NFC
 # NFC : Permissions for NFC
@@ -636,6 +619,22 @@ on property:ro.debuggable=1
     chmod 0666 /sys/class/mhl/test_v2
     chmod 0666 /sys/class/mhl/connection
 
+
+
+# ARGOSD
+service argos-daemon /system/bin/argosd
+    class main
+    user system
+    group system radio
+
+# SecEDS
+service TvoutService_C /system/bin/bintvoutservice
+    class main
+    user system
+    group graphics
+on property:ro.SecEDS.enable=false
+    stop TvoutService_C
+
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
     class core
@@ -658,9 +657,38 @@ on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
 
-service charger /charger
-    seclabel u:r:healthd:s0
-    class charger
+# ITP mode enter/exit
+on property:ril.cbd.modechan=0
+    restart ril-daemon
+
+on property:ril.cbd.modechan=2
+    restart ril-daemon
+
+#STE mmd
+service mmd /system/bin/mmd
+    class main
+    user system
+    group system radio net_admin inet sdcard_rw sdcard_r media_rw
+
+#STE dip
+service dip /system/bin/debug_interface_proxy -c /data/dipconfs
+    class main
+    user system
+    group system radio net_admin inet sdcard_rw sdcard_r media_rw
+
+# IPSec for VOLTE
+service ipsec-daemon /system/bin/IPSecService
+    class main
+    socket ipsec_socket stream 660 system system
+    user system
+    group system net_raw inet net_admin
+
+# LPM
+on property:ro.bootmode=charger
+    mount ext4 /dev/block/mmcblk0p18 /system wait ro
+
+on property:ro.bootmode=charger
+    class_start sec-charger
 
 # SensorHub (Location Hub)
 service lhd /system/bin/lhd /system/etc/lhd.conf
@@ -676,6 +704,12 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     group system inet net_raw
     ioprio be 0
 
+# SENSOR FRAMEWORK : starts fingerprintService
+service vcsFPService /system/bin/vcsFPService
+    class late_start
+    user system
+    group system
+
 # DRK/CS service
 service cs_service /system/bin/cs
     class main
@@ -685,16 +719,43 @@ service cs_service /system/bin/cs
 
 on property:sys.mobicoredaemon.enable=true
     start cs_service
+    write /proc/iccc_ready 1
+
+# Secure Storage startup
+service secure_storage /system/bin/secure_storage_daemon
+    class core
+    user system
+    group system
+    disabled
+
+on property:ro.securestorage.support=true
+    mkdir /dev/.secure_storage
+    chmod 0711 /dev/.secure_storage
+    chown system system /dev/.secure_storage
+    restorecon -R /dev/.secure_storage
+    start secure_storage
+
+on property:ro.securestorage.knox=true
+    mkdir /dev/.secure_storage
+    chmod 0711 /dev/.secure_storage
+    chown system system /dev/.secure_storage
+    restorecon -R /dev/.secure_storage
+    start secure_storage
 
 # SSWAP
-service swapon /sbin/sswap -s
+service swapon /sbin/sswap -s -f 1536
     class core
     user root
     group root
+    seclabel u:r:sswap:s0
     oneshot
 
+# Reactivation lock
+	service reactived /system/bin/reactived
+	class late_start
+
 # umount service
-service umount_service /system/bin/umount /preload
+service umount_service /system/bin/umount -D /preload
     disabled
     oneshot
 

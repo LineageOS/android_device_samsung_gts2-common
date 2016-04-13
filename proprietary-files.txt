@@ -1,4 +1,7 @@
 ### Wifi
+# WiFi kernel QoS
+bin/argosd
+# firmware
 etc/wifi/bcmdhd_apsta.bin
 etc/wifi/bcmdhd_ibss.bin
 etc/wifi/bcmdhd_mfg.bin
@@ -137,7 +140,6 @@ lib/libwrappergps.so
 ### HWC
 vendor/lib/libmalicore.bc
 vendor/lib/egl/libGLES_mali.so
-vendor/lib/libRSDriverArm.so
 
 ### OMX
 lib/omx/libOMX.Exynos.AVC.Encoder.so
@@ -156,20 +158,15 @@ lib/hw/sensorhubs.universal5433.so
 
 ### Widevine
 lib/liboemcrypto.so
-vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
-vendor/lib/libWVStreamControlAPI_L1.so
-vendor/lib/libdrmdecrypt.so
-vendor/lib/libstagefright_hdcp.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
+vendor/lib/libWVStreamControlAPI_L1.so
 
 ### RIL
 lib/libsecnativefeature.so
 lib/libsec-ril.so
-
-### IR
-lib/hw/consumerir.exynos5.so
 
 ### Mobicore
 app/FFFFFFFF000000000000000000000001.drbin
