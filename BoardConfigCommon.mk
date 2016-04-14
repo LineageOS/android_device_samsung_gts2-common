@@ -155,6 +155,7 @@ CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
 # RIL
 BOARD_VENDOR := samsung
 BOARD_PROVIDES_LIBRIL := true
+BOARD_MODEM_NEEDS_VIDEO_CALL_FIELD := true
 TARGET_IGNORE_RO_BOOT_REVISION := true
 
 # RIL.java overwrite
