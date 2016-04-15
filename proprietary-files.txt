@@ -137,8 +137,7 @@ bin/gpsd
 lib/hw/gps.default.so:lib/hw/gps.universal5433.so
 lib/libwrappergps.so
 
-### HWC
-vendor/lib/libmalicore.bc
+### ARM GPU
 vendor/lib/egl/libGLES_mali.so
 
 ### OMX
