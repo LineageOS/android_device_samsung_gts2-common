@@ -49,6 +49,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
 
 ###########################################################
+### BOOT ANIMATION
+###########################################################
+
+TARGET_SCREEN_HEIGHT := 2560
+TARGET_SCREEN_WIDTH := 1600
+
+###########################################################
 ### DISPLAY
 ###########################################################
 
