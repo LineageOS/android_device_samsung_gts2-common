@@ -80,6 +80,9 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 # less). Use 3 to avoid timing issues.
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 
+# Mixer
+BOARD_USE_BGRA_8888 := true
+
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
