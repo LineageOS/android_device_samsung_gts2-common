@@ -66,6 +66,9 @@ USE_OPENGL_RENDERER := true
 # Avoid buffer swap timing issues
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 5
 
+# Mixer
+BOARD_USE_BGRA_8888 := true
+
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
