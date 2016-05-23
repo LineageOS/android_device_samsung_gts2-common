@@ -1,18 +1,24 @@
 ### Wifi
-# WiFi kernel QoS
-bin/argosd
 # firmware
 etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_apsta.bin_4356_a2
+etc/wifi/bcmdhd_apsta.bin_4358_a1
 etc/wifi/bcmdhd_ibss.bin
+etc/wifi/bcmdhd_ibss.bin_4356_a2
+etc/wifi/bcmdhd_ibss.bin_4358_a1
 etc/wifi/bcmdhd_mfg.bin
+etc/wifi/bcmdhd_mfg.bin_4356_a2
+etc/wifi/bcmdhd_mfg.bin_4358_a1
 etc/wifi/bcmdhd_sta.bin
+etc/wifi/bcmdhd_sta.bin_4356_a2
+etc/wifi/bcmdhd_sta.bin_4358_a1
 etc/wifi/cred.conf
 etc/wifi/nvram_mfg.txt
-etc/wifi/nvram_mfg.txt_a0
-etc/wifi/nvram_mfg.txt_murata
+etc/wifi/nvram_mfg.txt_4356_a2
+etc/wifi/nvram_mfg.txt_4358_a1
 etc/wifi/nvram_net.txt
-etc/wifi/nvram_net.txt_a0
-etc/wifi/nvram_net.txt_murata
+etc/wifi/nvram_net.txt_4356_a2
+etc/wifi/nvram_net.txt_4358_a1
 
 ### Media
 # hevc for v4l2
@@ -20,39 +26,7 @@ vendor/firmware/hevc_fw.bin
 # S5P Multi Format Codec
 vendor/firmware/mfc_fw.bin
 # Image subsystem
-vendor/firmware/fimc_is_fw2_imx240.bin
-vendor/firmware/fimc_is_ois_63A.bin
-vendor/firmware/fimc_is_ois_63B.bin
-vendor/firmware/companion_default_coef.bin
-vendor/firmware/companion_default_lsc.bin
-vendor/firmware/companion_fw_imx240_evt1.bin
-vendor/firmware/companion_imx240_master_setfile.bin
-vendor/firmware/companion_imx240_mode_setfile.bin
-
-### Audio
-etc/firmware/florida-dsp1-edac.bin
-etc/firmware/florida-dsp1-edac.wmfw
-etc/firmware/florida-dsp2-tx-fb-meeting.bin
-etc/firmware/florida-dsp2-tx-fb-meeting.wmfw
-etc/firmware/florida-dsp2-tx-nb.wmfw
-etc/firmware/florida-dsp2-tx-swb.wmfw
-etc/firmware/florida-dsp2-tx-wb.wmfw
-etc/firmware/florida-dsp3-ez2-control.wmfw
-etc/firmware/florida-dsp3-lpsd-control.bin
-etc/firmware/florida-dsp3-tx-nb.bin
-etc/firmware/florida-dsp3-tx-nb.wmfw
-etc/firmware/florida-dsp3-tx-swb-conversation.bin
-etc/firmware/florida-dsp3-tx-swb-interview.bin
-etc/firmware/florida-dsp3-tx-swb.wmfw
-etc/firmware/florida-dsp3-tx-wb-meeting.bin
-etc/firmware/florida-dsp3-tx-wb-meeting.wmfw
-etc/firmware/florida-dsp3-tx-wb.bin
-etc/firmware/florida-dsp3-tx-wb.wmfw
-etc/firmware/florida-dsp4-dsm.wmfw
-etc/firmware/florida-dsp4-rx-anc-nb.bin
-etc/firmware/florida-dsp4-rx-anc-nb.wmfw
-etc/firmware/florida-dsp4-rx-anc-wb.bin
-etc/firmware/florida-dsp4-rx-anc-wb.wmfw
+vendor/firmware/fimc_is_fw2_4h5.bin
 
 # Audio decoder
 vendor/firmware/seiren_fw_dram.bin
@@ -113,16 +87,16 @@ vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_EARPIECE.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_SPEAKER.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
 vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/lib/liblvverx_3.25.00.so
-vendor/lib/liblvvetx_3.25.00.so
+vendor/lib/liblvverx_3.27.02.so
+vendor/lib/liblvvetx_3.27.02.so
 
 ### Camera
 lib/hw/camera.universal5433.so
 lib/libexynoscamera.so
 lib/libhwjpeg.so
 lib/libvdis.so
-vendor/firmware/setfile_6d1.bin
-vendor/firmware/setfile_imx240.bin
+vendor/firmware/setfile_4h5.bin
+vendor/firmware/setfile_6b2.bin
 
 # GPS
 bin/gpsd
@@ -136,16 +110,8 @@ vendor/lib/egl/libGLES_mali.so
 lib/omx/libOMX.Exynos.AVC.Encoder.so
 
 ### Sensors
-etc/lhd.conf
-bin/lhd
-lib/hw/sensors.universal5433.so
-
-### Sensorhub
-bin/sensorhubservice
-lib/libgnustl_shared.so
-lib/libsensorhub.so
-lib/libsensorhubservice.so
-lib/hw/sensorhubs.universal5433.so
+lib/libyasalgo.so
+lib/hw/sensors.exynos5.so
 
 ### Widevine
 lib/liboemcrypto.so
@@ -162,6 +128,7 @@ lib/libsec-ril.so
 ### Mobicore
 app/FFFFFFFF000000000000000000000001.drbin
 app/mcRegistry/07010000000000000000000000000000.tlbin
+app/mcRegistry/08130000000000000000000000000000.tlbin
 app/mcRegistry/07060000000000000000000000000000.tlbin
 app/mcRegistry/00060308060501020000000000000000.tlbin
 app/mcRegistry/02010000080300030000000000000000.tlbin
@@ -171,19 +138,21 @@ app/mcRegistry/ffffffff00000000000000000000000c.tlbin
 app/mcRegistry/ffffffff00000000000000000000000d.tlbin
 app/mcRegistry/ffffffff00000000000000000000000e.tlbin
 app/mcRegistry/ffffffff00000000000000000000000f.tlbin
+app/mcRegistry/ffffffff00000000000000000000001f.tlbin
+app/mcRegistry/ffffffff00000000000000000000003e.tlbin
 app/mcRegistry/ffffffff000000000000000000000004.tlbin
 app/mcRegistry/ffffffff000000000000000000000005.tlbin
 app/mcRegistry/ffffffff000000000000000000000011.tlbin
 app/mcRegistry/ffffffff000000000000000000000012.tlbin
 app/mcRegistry/ffffffff000000000000000000000013.tlbin
-app/mcRegistry/ffffffff000000000000000000000014.tlbin
 app/mcRegistry/ffffffff000000000000000000000016.tlbin
 app/mcRegistry/ffffffff000000000000000000000017.tlbin
 app/mcRegistry/ffffffff000000000000000000000018.tlbin
 app/mcRegistry/ffffffff000000000000000000000019.tlbin
+app/mcRegistry/ffffffff000000000000000000000021.tlbin
+app/mcRegistry/ffffffff000000000000000000000041.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
 app/mcRegistry/ffffffffd00000000000000000000004.tlbin
-app/mcRegistry/ffffffffd00000000000000000000014.tlbin
 app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 app/mcRegistry/fffffffff0000000000000000000001e.tlbin
