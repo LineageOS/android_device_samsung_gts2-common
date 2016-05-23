@@ -422,12 +422,6 @@ on fs
     chown system radio /sys/class/audio/earjack/state
     chown system radio /sys/class/dsm/max98504/dsm_log
 
-# Permissions for System LSI NFC
-# NFC : Permissions for NFC
-    chmod 0660 /dev/sec-nfc
-# NFC : change owner
-    chown nfc nfc /dev/sec-nfc
-
 # MOBEAM
     chown system radio /sys/class/sec/sec_barcode_emul/vendor
     chown system radio /sys/class/sec/sec_barcode_emul/name

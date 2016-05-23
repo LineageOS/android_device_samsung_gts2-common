@@ -45,7 +45,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_large_cache_width=4096 \
     ro.hwui.text_large_cache_height=2048 \
     ro.hwui.fbo_cache_size=16
-
-# Nfc
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.nfc.sec_hal=true
