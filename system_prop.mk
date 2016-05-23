@@ -12,8 +12,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.fw.dex2oat_thread_count=4 \
     dalvik.vm.image-dex2oat-filter=speed \
     dalvik.vm.dex2oat-filter=speed \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=256m \
+    dalvik.vm.heapstartsize=16m \
+    dalvik.vm.heapgrowthlimit=192m \
     dalvik.vm.heapsize=512m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=2m \
@@ -32,8 +32,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Hwui
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hwui.texture_cache_size=88 \
-    ro.hwui.layer_cache_size=58 \
+    ro.hwui.texture_cache_size=96 \
+    ro.hwui.layer_cache_size=64 \
     ro.hwui.path_cache_size=16 \
     ro.hwui.texture_cache_flushrate=0.4 \
     ro.hwui.shape_cache_size=4 \
