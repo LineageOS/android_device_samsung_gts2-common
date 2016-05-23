@@ -1,4 +1,4 @@
-LOCAL_PATH := device/samsung/trelte-common
+LOCAL_PATH := device/samsung/gts2-common
 
 TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
@@ -42,7 +42,7 @@ TARGET_POWERHAL_VARIANT := samsung
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
 
 # Kernel
-TARGET_KERNEL_SOURCE := kernel/samsung/trelte
+TARGET_KERNEL_SOURCE := kernel/samsung/gts2
 
 # Use these flags if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -121,7 +121,7 @@ BOARD_USE_VP8ENC_SUPPORT := true
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # Hardware
-BOARD_HARDWARE_CLASS += device/samsung/trelte-common/cmhw
+BOARD_HARDWARE_CLASS += device/samsung/gts2-common/cmhw
 
 # WIFI
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
@@ -170,4 +170,4 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/ramdisk/fstab.universal5433
 
 # SELinux
 BOARD_SEPOLICY_DIRS := \
-	device/samsung/trelte-common/sepolicy
+	device/samsung/gts2-common/sepolicy

@@ -1,6 +1,6 @@
-DEVICE_PACKAGE_OVERLAYS += device/samsung/trelte-common/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/gts2-common/overlay
 
-LOCAL_PATH := device/samsung/trelte-common
+LOCAL_PATH := device/samsung/gts2-common
 
 ###########################################################
 ### RAMDISK
@@ -222,4 +222,4 @@ $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5433/exynos5433.mk)
 
 # call the proprietary setup
-$(call inherit-product-if-exists, vendor/samsung/trelte-common/trelte-common-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/gts2-common/gts2-common-vendor.mk)
