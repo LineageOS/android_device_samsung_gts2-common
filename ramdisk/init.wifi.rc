@@ -8,6 +8,7 @@ on post-fs-data
     mkdir /data/misc/wifi 0770 wifi system
     chmod 0660 /data/misc/wifi/wpa_supplicant.conf
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/wifi/log/ 0770 wifi system
     mkdir /data/misc/dhcp 0775 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
 
@@ -39,6 +40,8 @@ on boot
 
     # Pcie WiFi T-put setting
 	write /sys/class/net/wlan0/queues/rx-0/rps_cpus 00
+
+	write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
 
 # Run deferred initcalls of builtin kernel modules (bcmdhd)
