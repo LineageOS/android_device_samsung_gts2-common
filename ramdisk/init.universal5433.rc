@@ -1,5 +1,5 @@
 import init.universal5433.usb.rc
-import init.modem.rc
+import init.baseband.rc
 import init.power.rc
 import init.samsung.rc
 import init.wifi.rc
