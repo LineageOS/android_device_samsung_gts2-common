@@ -52,9 +52,6 @@ PRODUCT_PACKAGES += \
     libion \
     libfimg
 
-PRODUCT_PACKAGES += \
-    libstlport
-
 # hardware/samsung/AdvancedDisplay (MDNIE)
 PRODUCT_PACKAGES += \
     AdvancedDisplay
