@@ -38,9 +38,6 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # PowerHAL
 TARGET_POWERHAL_VARIANT := samsung
 
-# Sensors
-TARGET_NO_SENSOR_PERMISSION_CHECK := true
-
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/gts2
 
