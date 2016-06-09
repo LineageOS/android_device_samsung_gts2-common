@@ -42,7 +42,7 @@ PRODUCT_COPY_FILES += \
 ### DISPLAY
 ###########################################################
 
-PRODUCT_AAPT_CONFIG := xlarge dpi xhdpi
+PRODUCT_AAPT_CONFIG := xlarge hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_PACKAGES += \
