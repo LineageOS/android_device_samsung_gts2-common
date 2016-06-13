@@ -70,6 +70,9 @@ BOARD_USE_BGRA_8888 := true
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
+# Virtual Display
+BOARD_USES_VIRTUAL_DISPLAY := true
+
 # HDMI
 BOARD_USES_NEW_HDMI := true
 BOARD_USES_GSC_VIDEO := true
