@@ -99,10 +99,9 @@ lib/libvdis.so
 vendor/firmware/setfile_4h5.bin
 vendor/firmware/setfile_6b2.bin
 
-# GPS
+### GPS
 bin/gpsd
 lib/hw/gps.default.so:lib/hw/gps.universal5433.so
-lib/libwrappergps.so
 
 ### ARM GPU
 vendor/lib/egl/libGLES_mali.so
@@ -124,7 +123,6 @@ vendor/lib/libWVStreamControlAPI_L1.so
 
 ### RIL
 lib/libsecnativefeature.so
-lib/libsec-ril.so
 
 ### Mobicore
 app/FFFFFFFF000000000000000000000001.drbin
