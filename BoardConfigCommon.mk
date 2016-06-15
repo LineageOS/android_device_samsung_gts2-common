@@ -17,6 +17,8 @@ TARGET_CPU_VARIANT := cortex-a53.a57
 
 TARGET_BOOTLOADER_BOARD_NAME := universal5433
 
+BOARD_VENDOR := samsung
+
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 #BOARD_KERNEL_CMDLINE := The bootloader ignores the cmdline from the boot.img
@@ -138,11 +140,6 @@ GREEN_LED_PATH := "/sys/class/leds/led_g/brightness"
 BLUE_LED_PATH := "/sys/class/leds/led_b/brightness"
 BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := /sys/class/power_supply/battery/batt_lp_charging
-
-# RIL
-BOARD_VENDOR := samsung
-BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_NEEDS_VIDEO_CALL_FIELD := true
 
 # RIL.java overwrite
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
