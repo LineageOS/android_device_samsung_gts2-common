@@ -213,7 +213,6 @@ on boot
     chmod 0664 /sys/class/devfreq/bus_int.6/max_freq
 
     # NFC_NXP
-    setprop ro.nfc.port "I2C"
     chmod 0660 /dev/pn547
     chown nfc nfc /dev/pn547
     chown nfc /dev/pn547
@@ -280,9 +279,6 @@ on boot
     chown radio system /sys/class/secgpio_check/secgpio_check_all/gpioinit_check
     chown radio system /sys/class/secgpio_check/secgpio_check_all/gpiosleep_check
     chown radio system /sys/class/secgpio_check/secgpio_check_all/checked_sleepGPIO
-
-    # Define default initial receive window size in segments.
-    setprop net.tcp.default_init_rwnd 60
 
  # permission for CHARGING
    mkdir /efs/Battery 0775 radio system

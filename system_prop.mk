@@ -2,6 +2,10 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1
 
+# Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bt.bdaddr_path="/efs/bluetooth/bt_addr"
+
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
@@ -44,3 +48,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_large_cache_width=4096 \
     ro.hwui.text_large_cache_height=2048 \
     ro.hwui.fbo_cache_size=16
+
+# Network
+# Define default initial receive window size in segments.
+PRODUCT_PROPERTY_OVERRIDES += \
+    net.tcp.default_init_rwnd=60
+
+# Nfc
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.nfc.port="I2C"
+
+# Wifi
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0
