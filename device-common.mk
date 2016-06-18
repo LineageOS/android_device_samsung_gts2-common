@@ -73,10 +73,6 @@ PRODUCT_PACKAGES += \
 ### WIFI
 ###########################################################
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
-
 PRODUCT_PACKAGES += \
     macloader \
     wifiloader \
@@ -189,6 +185,9 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
+
+# call broadcom configs
+$(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
 # call Samsung LSI board support package
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
