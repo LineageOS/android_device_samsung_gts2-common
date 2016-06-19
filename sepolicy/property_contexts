@@ -1,2 +1,5 @@
-# Modemloader
-hw.revision              u:object_r:modemloader_prop:s0
+# cbd read-only properties
+ro.csc.salescode         u:object_r:cpboot-daemon_prop:s0
+ro.product.name          u:object_r:cpboot-daemon_prop:s0
+ro.revision              u:object_r:cpboot-daemon_prop:s0
+ro.serialno              u:object_r:cpboot-daemon_prop:s0

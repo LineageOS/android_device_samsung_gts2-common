@@ -86,10 +86,13 @@
 # rild
 /sys/devices/virtual/misc/multipdp(/.*)     u:object_r:sysfs_multipdp_writable:s0
 
+# mdnie
+/sys/class/mdnie(/.*)?       -- u:object_r:sysfs_mdnie_writable:s0
+
 ####################################
 # deamons
 #
-/sbin/cbd                    -- u:object_r:cpboot-daemon_exec:s0
+/system/bin/cbd              -- u:object_r:cpboot-daemon_exec:s0
 
 /system/bin/mcDriverDaemon   -- u:object_r:tee_exec:s0
 /system/bin/macloader        -- u:object_r:macloader_exec:s0
