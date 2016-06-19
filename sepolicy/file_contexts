@@ -86,6 +86,9 @@
 # rild
 /sys/devices/virtual/misc/multipdp(/.*)     u:object_r:sysfs_multipdp_writable:s0
 
+# mdnie
+/sys/class/mdnie/mdnie(/.*)?                u:object_r:sysfs_display:s0
+
 ####################################
 # deamons
 #
