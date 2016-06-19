@@ -16,7 +16,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq ($(filter gts210ltexx gts210wifi, $(TARGET_DEVICE)),)
+ifneq ($(filter gts28ltexx gts28wifi gts210ltexx gts210wifi, $(TARGET_DEVICE)),)
 
 $(shell mkdir -p out/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ/drivers/muic/universal)
 $(shell mkdir -p out/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ/drivers/net/wireless/bcmdhd4358)
