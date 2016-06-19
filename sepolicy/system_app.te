@@ -1,0 +1,2 @@
+allow system_app sysfs_mdnie_writable:{ file lnk_file } { getattr open read write };
+allow system_app sysfs_mdnie_writable:dir { search };
