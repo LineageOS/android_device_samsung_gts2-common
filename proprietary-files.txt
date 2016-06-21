@@ -117,12 +117,11 @@ lib/libyasalgo.so
 lib/hw/sensors.exynos5.so
 
 ### Widevine
-lib/liboemcrypto.so
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
+vendor/lib/drm/libdrmwvmplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/libdrmdecrypt.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L1.so
 
 ### Mobicore
 app/FFFFFFFF000000000000000000000001.drbin
