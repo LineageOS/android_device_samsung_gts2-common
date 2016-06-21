@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5faad753_616b841d",
+        "filename": "sepolicy/cpboot-daemon.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2016-06-21T16:07:23Z",
+      "side": 1,
+      "message": "Just a side note that this is a really long domain name, and you could shorten it if you really wish to.",
+      "range": {
+        "startLine": 2,
+        "startChar": 5,
+        "endLine": 2,
+        "endChar": 18
+      },
+      "revId": "f3869f18f3954c7c2b1da655f93d2159327261fa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_c115989d",
+        "filename": "sepolicy/cpboot-daemon.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2016-06-21T16:07:23Z",
+      "side": 1,
+      "message": "Random newline?",
+      "revId": "f3869f18f3954c7c2b1da655f93d2159327261fa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_c17a78ef",
+        "filename": "sepolicy/init.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2016-06-21T16:07:23Z",
+      "side": 1,
+      "message": "Can replace with r_file_perms which grants a few more read only perms if you want to.",
+      "range": {
+        "startLine": 17,
+        "startChar": 43,
+        "endLine": 17,
+        "endChar": 55
+      },
+      "revId": "f3869f18f3954c7c2b1da655f93d2159327261fa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_e17f74dd",
+        "filename": "sepolicy/modemloader.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2016-06-21T16:07:23Z",
+      "side": 1,
+      "message": "Don\u0027t suppose you happen to know which property its trying to set? You can label that more specifically if it\u0027s modemloader specific.",
+      "range": {
+        "startLine": 10,
+        "startChar": 22,
+        "endLine": 10,
+        "endChar": 33
+      },
+      "revId": "f3869f18f3954c7c2b1da655f93d2159327261fa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_017410fd",
+        "filename": "sepolicy/property_contexts",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2016-06-21T16:07:23Z",
+      "side": 1,
+      "message": "Pretty sure these are properties common to all Android systems? It might just be better to grant cbd access to the original label.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 57
+      },
+      "revId": "f3869f18f3954c7c2b1da655f93d2159327261fa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_416e882f",
+        "filename": "sepolicy/system_app.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2016-06-21T16:07:23Z",
+      "side": 1,
+      "message": "rw_file_perms, if you want to do that.",
+      "range": {
+        "startLine": 1,
+        "startChar": 58,
+        "endLine": 1,
+        "endChar": 81
+      },
+      "revId": "f3869f18f3954c7c2b1da655f93d2159327261fa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_a185fcd0",
+        "filename": "sepolicy/system_app.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2016-06-21T16:07:23Z",
+      "side": 1,
+      "message": "Don\u0027t need the { } if it\u0027s only one permissions.",
+      "range": {
+        "startLine": 2,
+        "startChar": 42,
+        "endLine": 2,
+        "endChar": 53
+      },
+      "revId": "f3869f18f3954c7c2b1da655f93d2159327261fa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
