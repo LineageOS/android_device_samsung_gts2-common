@@ -90,6 +90,9 @@ vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
 vendor/lib/liblvverx_3.27.02.so
 vendor/lib/liblvvetx_3.27.02.so
 
+### Security (Camera & Ril)
+lib/libsecnativefeature.so
+
 ### Camera
 lib/hw/camera.universal5433.so
 lib/libexynoscamera.so
