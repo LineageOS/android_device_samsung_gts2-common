@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5faad753_1071bb0c",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-06-22T16:41:11Z",
+      "side": 0,
+      "message": "Remove the NXP lines from this commit please.",
+      "revId": "7df21f97d9be8da268fb4655175a2c085bf3901c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_b0630742",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-06-22T16:41:11Z",
+      "side": 0,
+      "message": "Same as above.",
+      "revId": "7df21f97d9be8da268fb4655175a2c085bf3901c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_d068031e",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-06-22T16:41:11Z",
+      "side": 0,
+      "message": "Huh?\nI thought this was supposed to be common; last time you needed this for camera too.",
+      "revId": "7df21f97d9be8da268fb4655175a2c085bf3901c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_905e0b74",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-06-22T16:41:11Z",
+      "side": 0,
+      "message": "Is there something wrong with your camera using these blobs?",
+      "revId": "7df21f97d9be8da268fb4655175a2c085bf3901c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_3057175b",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-06-22T16:41:11Z",
+      "side": 0,
+      "message": "This should stay common, it\u0027s only SoC specific, not variant specific.",
+      "revId": "7df21f97d9be8da268fb4655175a2c085bf3901c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_50541353",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-06-22T16:41:11Z",
+      "side": 0,
+      "message": "I\u0027m pretty sure the sensor blobs aren\u0027t variant specific either, are they?",
+      "revId": "7df21f97d9be8da268fb4655175a2c085bf3901c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_f04c1fc9",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-06-22T16:41:11Z",
+      "side": 0,
+      "message": "Don\u0027t touch the widevine blobs please, we need Nexus ones anyways (which I am preparing currently).",
+      "revId": "7df21f97d9be8da268fb4655175a2c085bf3901c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5faad753_104a1bab",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-06-22T16:41:11Z",
+      "side": 0,
+      "message": "Same.",
+      "revId": "7df21f97d9be8da268fb4655175a2c085bf3901c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
