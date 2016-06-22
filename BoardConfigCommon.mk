@@ -34,6 +34,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 
 # PowerHAL
 TARGET_POWERHAL_VARIANT := samsung
+TARGET_DT2W_PATH := /sys/class/sec/tsp/input/rmii2c/wake_gesture
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/gts2
