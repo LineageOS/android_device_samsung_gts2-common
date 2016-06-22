@@ -13,12 +13,6 @@ etc/wifi/bcmdhd_sta.bin
 etc/wifi/bcmdhd_sta.bin_4356_a2
 etc/wifi/bcmdhd_sta.bin_4358_a1
 etc/wifi/cred.conf
-etc/wifi/nvram_mfg.txt
-etc/wifi/nvram_mfg.txt_4356_a2
-etc/wifi/nvram_mfg.txt_4358_a1
-etc/wifi/nvram_net.txt
-etc/wifi/nvram_net.txt_4356_a2
-etc/wifi/nvram_net.txt_4358_a1
 
 ### Media
 # hevc for v4l2
@@ -126,9 +120,7 @@ vendor/lib/libWVStreamControlAPI_L1.so
 
 ### Mobicore
 app/FFFFFFFF000000000000000000000001.drbin
-app/mcRegistry/07010000000000000000000000000000.tlbin
 app/mcRegistry/08130000000000000000000000000000.tlbin
-app/mcRegistry/07060000000000000000000000000000.tlbin
 app/mcRegistry/00060308060501020000000000000000.tlbin
 app/mcRegistry/02010000080300030000000000000000.tlbin
 app/mcRegistry/ffffffff00000000000000000000000a.tlbin
@@ -153,5 +145,4 @@ app/mcRegistry/ffffffff000000000000000000000041.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
 app/mcRegistry/ffffffffd00000000000000000000004.tlbin
-app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 app/mcRegistry/fffffffff0000000000000000000001e.tlbin
