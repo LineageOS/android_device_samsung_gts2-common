@@ -1,3 +1,31 @@
+# Differences between stock versions of T810 and 815
+# images work as expected with common blobs
+
+### Camera/Ril
+lib/libsecnativefeature.so
+
+### Camera
+lib/hw/camera.universal5433.so
+lib/libexynoscamera.so
+lib/libhwjpeg.so
+lib/libsensorlistener.so
+
+### OMX
+lib/omx/libOMX.Exynos.AVC.Encoder.so
+
+### Sensors
+lib/libyasalgo.so
+lib/hw/sensors.exynos5.so
+
+### Widevine
+vendor/lib/mediadrm/libdrmclearkeyplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
+vendor/lib/libwvm.so
+
+###
+# Below 100% identical blobs between T710, 715, 810 and 815 stock
+###
+
 ### Wifi
 # firmware
 etc/wifi/bcmdhd_apsta.bin
@@ -13,12 +41,6 @@ etc/wifi/bcmdhd_sta.bin
 etc/wifi/bcmdhd_sta.bin_4356_a2
 etc/wifi/bcmdhd_sta.bin_4358_a1
 etc/wifi/cred.conf
-etc/wifi/nvram_mfg.txt
-etc/wifi/nvram_mfg.txt_4356_a2
-etc/wifi/nvram_mfg.txt_4358_a1
-etc/wifi/nvram_net.txt
-etc/wifi/nvram_net.txt_4356_a2
-etc/wifi/nvram_net.txt_4358_a1
 
 ### Media
 # hevc for v4l2
@@ -32,103 +54,22 @@ vendor/firmware/fimc_is_fw2_4h5.bin
 vendor/firmware/seiren_fw_dram.bin
 vendor/firmware/seiren_fw_sram.bin
 
-# Noise supppression
-vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_ANALOG_DOCK.txt
-vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_EARPIECE.txt
-vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_SPEAKER.txt
-vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/BargeIn/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_ANALOG_DOCK.txt
-vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_EARPIECE.txt
-vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_SPEAKER.txt
-vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/BargeInDriving/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/LVVEFS_Rx_Configuration.txt
-vendor/etc/nxp/LVVEFS_Tx_Configuration.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_NARROWBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_NARROWBAND_EARPIECE.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_NARROWBAND_SPEAKER.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_NARROWBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_NARROWBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_EARPIECE.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_SPEAKER.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/mVoIP/Rx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_EARPIECE.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_SPEAKER.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_NARROWBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_EARPIECE.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_SPEAKER.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/mVoIP/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_EARPIECE.txt
-vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_SPEAKER.txt
-vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/mVoIPFMC/Rx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_EARPIECE.txt
-vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_SPEAKER.txt
-vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/mVoIPFMC/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_EARPIECE.txt
-vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_SPEAKER.txt
-vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/mVoIPSec/Rx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_BLUETOOTH_SCO_HEADSET.txt
-vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_EARPIECE.txt
-vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_SPEAKER.txt
-vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADPHONE.txt
-vendor/etc/nxp/mVoIPSec/Tx_ControlParams_WIDEBAND_WIRED_HEADSET.txt
-vendor/lib/liblvverx_3.27.02.so
-vendor/lib/liblvvetx_3.27.02.so
-
-### Camera/Ril
-lib/libsecnativefeature.so
-
 ### Camera
-lib/hw/camera.universal5433.so
-lib/libexynoscamera.so
-lib/libhwjpeg.so
-lib/libsensorlistener.so
 lib/libvdis.so
 vendor/firmware/setfile_4h5.bin
 vendor/firmware/setfile_6b2.bin
 
-### GPS
-bin/gpsd
-lib/hw/gps.default.so:lib/hw/gps.universal5433.so
-
 ### ARM GPU
 vendor/lib/egl/libGLES_mali.so
 
-### OMX
-lib/omx/libOMX.Exynos.AVC.Encoder.so
-
-### Sensors
-lib/libyasalgo.so
-lib/hw/sensors.exynos5.so
-
 ### Widevine
 lib/liboemcrypto.so
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
-vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libwvdrm_L1.so
-vendor/lib/libwvm.so
 vendor/lib/libWVStreamControlAPI_L1.so
 
 ### Mobicore
 app/FFFFFFFF000000000000000000000001.drbin
-app/mcRegistry/07010000000000000000000000000000.tlbin
 app/mcRegistry/08130000000000000000000000000000.tlbin
-app/mcRegistry/07060000000000000000000000000000.tlbin
 app/mcRegistry/00060308060501020000000000000000.tlbin
 app/mcRegistry/02010000080300030000000000000000.tlbin
 app/mcRegistry/ffffffff00000000000000000000000a.tlbin
@@ -153,5 +94,4 @@ app/mcRegistry/ffffffff000000000000000000000041.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
 app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
 app/mcRegistry/ffffffffd00000000000000000000004.tlbin
-app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 app/mcRegistry/fffffffff0000000000000000000001e.tlbin
