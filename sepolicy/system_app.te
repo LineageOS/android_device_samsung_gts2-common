@@ -1,0 +1,3 @@
+# mDNIe: Add sysfs_mdnie_writable context access to system_app
+allow system_app sysfs_mdnie_writable:{ file lnk_file } { getattr open read write };
+allow system_app sysfs_mdnie_writable:dir { search };
