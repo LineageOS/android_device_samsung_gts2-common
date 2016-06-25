@@ -13,12 +13,6 @@ etc/wifi/bcmdhd_sta.bin
 etc/wifi/bcmdhd_sta.bin_4356_a2
 etc/wifi/bcmdhd_sta.bin_4358_a1
 etc/wifi/cred.conf
-etc/wifi/nvram_mfg.txt
-etc/wifi/nvram_mfg.txt_4356_a2
-etc/wifi/nvram_mfg.txt_4358_a1
-etc/wifi/nvram_net.txt
-etc/wifi/nvram_net.txt_4356_a2
-etc/wifi/nvram_net.txt_4358_a1
 
 ### Media
 # hevc for v4l2
@@ -102,10 +96,6 @@ lib/libvdis.so
 vendor/firmware/setfile_4h5.bin
 vendor/firmware/setfile_6b2.bin
 
-### GPS
-bin/gpsd
-lib/hw/gps.default.so:lib/hw/gps.universal5433.so
-
 ### ARM GPU
 vendor/lib/egl/libGLES_mali.so
 
@@ -122,35 +112,3 @@ vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libdrmdecrypt.so
 vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
-
-### Mobicore
-app/FFFFFFFF000000000000000000000001.drbin
-app/mcRegistry/07010000000000000000000000000000.tlbin
-app/mcRegistry/08130000000000000000000000000000.tlbin
-app/mcRegistry/07060000000000000000000000000000.tlbin
-app/mcRegistry/00060308060501020000000000000000.tlbin
-app/mcRegistry/02010000080300030000000000000000.tlbin
-app/mcRegistry/ffffffff00000000000000000000000a.tlbin
-app/mcRegistry/ffffffff00000000000000000000000b.tlbin
-app/mcRegistry/ffffffff00000000000000000000000c.tlbin
-app/mcRegistry/ffffffff00000000000000000000000d.tlbin
-app/mcRegistry/ffffffff00000000000000000000000e.tlbin
-app/mcRegistry/ffffffff00000000000000000000000f.tlbin
-app/mcRegistry/ffffffff00000000000000000000001f.tlbin
-app/mcRegistry/ffffffff00000000000000000000003e.tlbin
-app/mcRegistry/ffffffff000000000000000000000004.tlbin
-app/mcRegistry/ffffffff000000000000000000000005.tlbin
-app/mcRegistry/ffffffff000000000000000000000011.tlbin
-app/mcRegistry/ffffffff000000000000000000000012.tlbin
-app/mcRegistry/ffffffff000000000000000000000013.tlbin
-app/mcRegistry/ffffffff000000000000000000000016.tlbin
-app/mcRegistry/ffffffff000000000000000000000017.tlbin
-app/mcRegistry/ffffffff000000000000000000000018.tlbin
-app/mcRegistry/ffffffff000000000000000000000019.tlbin
-app/mcRegistry/ffffffff000000000000000000000021.tlbin
-app/mcRegistry/ffffffff000000000000000000000041.tlbin
-app/mcRegistry/ffffffffd0000000000000000000000a.tlbin
-app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
-app/mcRegistry/ffffffffd00000000000000000000004.tlbin
-app/mcRegistry/ffffffffd00000000000000000000016.tlbin
-app/mcRegistry/fffffffff0000000000000000000001e.tlbin
