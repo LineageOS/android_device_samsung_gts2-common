@@ -32,6 +32,9 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 27657240576
 # blockdev --getbsz /dev/block/mmcblk0p9
 BOARD_FLASH_BLOCK_SIZE := 4096
 
+# gralloc fb format
+BOARD_USE_BGRA_8888 := true
+
 # PowerHAL
 TARGET_POWERHAL_VARIANT := samsung
 
