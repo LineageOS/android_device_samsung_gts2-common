@@ -229,6 +229,8 @@
 
     <!-- Allow screen mirroring/miracast -->
     <bool name="config_enableWifiDisplay">true</bool>
+    <!-- Our gralloc has support for protected buffers -->
+    <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
 
     <!-- Indicate whether the lid state impacts the accessibility of
          the navigation buttons.  0 means it doesn't, 1 means it is accessible
