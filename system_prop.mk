@@ -58,6 +58,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.nfc.port="I2C"
 
+# By default rotate lockscreen so user switch is possible
+PRODUCT_PROPERTY_OVERRIDES += \
+    lockscreen.rot_override=true
+
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
