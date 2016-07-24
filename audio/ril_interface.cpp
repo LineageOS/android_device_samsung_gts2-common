@@ -1,5 +1,9 @@
 /*
- * Copyright (C) 2013 The CyanogenMod Project
+ * Copyright (c) 2015-2016 Andreas Schneider <asn@cryptomilk.org>
+ * Copyright (C) 2013-2016 The CyanogenMod Project
+ *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
+ *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
+ *               Christopher N. Hesse <raymanfx@gmail.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,34 +29,34 @@
 #include <utils/Log.h>
 #include <cutils/properties.h>
 
+#include "audio_hw.h"
 #include "ril_interface.h"
 
 #define VOLUME_STEPS_DEFAULT  "5"
 #define VOLUME_STEPS_PROPERTY "ro.config.vc_call_vol_steps"
 
 /* Audio WB AMR callback */
-void (*_audio_set_wb_amr_callback)(void *, int);
-void *callback_data = NULL;
+struct audio_device *callback_data = NULL;
 
-void ril_register_set_wb_amr_callback(void *function, void *data)
+/* Get the audio_device struct from the HAL */
+void ril_register_set_callback_data(struct audio_device *adev)
 {
-    _audio_set_wb_amr_callback = function;
-    callback_data = data;
+    callback_data = adev;
 }
 
 /* This is the callback function that the RIL uses to
 set the wideband AMR state */
-static int ril_set_wb_amr_callback(void *ril_client __unused,
+static int ril_interface_set_callback_data(void *ril_client __unused,
                                    const void *data,
                                    size_t datalen)
 {
     int enable = ((int *)data)[0];
 
-    if (callback_data == NULL || _audio_set_wb_amr_callback == NULL) {
+    if (callback_data == NULL) {
         return -1;
     }
 
-    _audio_set_wb_amr_callback(callback_data, enable);
+    adev_set_wb_amr_callback(callback_data, enable);
 
     return 0;
 }
@@ -93,7 +97,7 @@ int ril_open(struct ril_handle *ril)
     /* register the wideband AMR callback */
     RegisterUnsolicitedHandler(ril->client,
                                RIL_UNSOL_SNDMGR_WB_AMR_REPORT,
-                               (RilOnUnsolicited)ril_set_wb_amr_callback);
+                               (RilOnUnsolicited)ril_register_set_callback_data);
 
     property_get(VOLUME_STEPS_PROPERTY, property, VOLUME_STEPS_DEFAULT);
     ril->volume_steps_max = atoi(property);

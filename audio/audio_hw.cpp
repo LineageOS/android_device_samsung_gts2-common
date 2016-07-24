@@ -1,11 +1,11 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
  * Copyright (C) 2012 Wolfson Microelectronics plc
- * Copyright (C) 2013-2015 The CyanogenMod Project
+ * Copyright (c) 2015-2016 Andreas Schneider <asn@cryptomilk.org>
+ * Copyright (C) 2013-2016 The CyanogenMod Project
  *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
  *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
- * Copyright (c) 2015-2016 Andreas Schneider <asn@cryptomilk.org>
- * Copyright (c) 2015-2016 Christopher N. Hesse <raymanfx@gmail.org>
+ *               Christopher N. Hesse <raymanfx@gmail.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,12 @@
 #define LOG_TAG "audio_hw_primary"
 #define LOG_NDEBUG 0
 
-#include <errno.h>
+#include <cerrno>
+#include <cstdint>
+#include <cstdlib>
+#include <string>
+
 #include <pthread.h>
-#include <stdint.h>
-#include <stdlib.h>
 #include <sys/time.h>
 #include <fcntl.h>
 
@@ -49,6 +51,8 @@
 
 #include "routing.h"
 #include "ril_interface.h"
+
+using namespace std;
 
 #define PCM_CARD 0
 #define PCM_CARD_SPDIF 1
@@ -190,7 +194,7 @@ struct audio_device {
     int cur_route_id;     /* current route ID: combination of input source
                            * and output device IDs */
     audio_mode_t mode;
-    
+
     /* Call audio */
     struct pcm *pcm_voice_rx;
     struct pcm *pcm_voice_tx;
@@ -272,7 +276,7 @@ struct stream_in {
 #define STRING_TO_ENUM(string) { #string, string }
 
 struct string_to_enum {
-    const char *name;
+    const string name;
     uint32_t value;
 };
 
@@ -360,19 +364,17 @@ static int adev_set_voice_volume(struct audio_hw_device *dev, float volume);
 
 static int open_hdmi_driver(struct audio_device *adev)
 {
-    char *hdmi_node;
-
 #ifndef USES_NEW_HDMI
-    hdmi_node = "/dev/video16";
+    const string hdmi_node = "/dev/video16";
 #else
-    hdmi_node = "/dev/graphics/fb1";
+    const string hdmi_node = "/dev/graphics/fb1";
 #endif
 
     if (adev->hdmi_drv_fd < 0) {
-        adev->hdmi_drv_fd = open(hdmi_node, O_RDWR);
+        adev->hdmi_drv_fd = open(hdmi_node.c_str(), O_RDWR);
         if (adev->hdmi_drv_fd < 0)
             ALOGE("%s cannot open %s - error: %s\n",
-                  __func__, hdmi_node, strerror(errno));
+                  __func__, hdmi_node.c_str(), strerror(errno));
     }
     return adev->hdmi_drv_fd;
 }
@@ -459,10 +461,10 @@ static void select_devices(struct audio_device *adev)
 {
     int output_device_id = get_output_device_id(adev->out_device);
     int input_source_id = get_input_source_id(adev->input_source, adev->wb_amr);
-    const char *output_route = NULL;
-    const char *input_route = NULL;
-    char output_gain[64] = {0};
-    char input_gain[64] = {0};
+    string output_route = "none";
+    string input_route = "none";
+    string output_gain;
+    string input_gain;
     int new_route_id;
 
     if (adev->hdmi_drv_fd == 0)
@@ -513,8 +515,7 @@ static void select_devices(struct audio_device *adev)
           "output route: %s, input route: %s",
           __func__,
           adev->out_device, adev->input_source,
-          output_route ? output_route : "none",
-          input_route ? input_route : "none");
+          output_route.c_str(), input_route.c_str());
 
     /*
      * Reset the audio routes to deactivate active audio paths
@@ -530,27 +531,21 @@ static void select_devices(struct audio_device *adev)
     /*
      * Apply the new audio routes and set volumes
      */
-    if (output_route != NULL) {
-        audio_route_apply_path(adev->ar, output_route);
+    if (output_route.compare("none")) {
+        audio_route_apply_path(adev->ar, output_route.c_str());
 
-        snprintf(output_gain,
-                 sizeof(output_gain),
-                 "gain-%s",
-                 output_route);
-        audio_route_apply_path(adev->ar, output_gain);
+        output_gain = "gain-" + output_route;
+        audio_route_apply_path(adev->ar, output_gain.c_str());
         ALOGV("%s: Applying gain [%s] for route [%s]", __func__,
-              output_gain, output_route);
+              output_gain.c_str(), output_route.c_str());
     }
-    if (input_route != NULL) {
-        audio_route_apply_path(adev->ar, input_route);
+    if (input_route.compare("none")) {
+        audio_route_apply_path(adev->ar, input_route.c_str());
 
-        snprintf(input_gain,
-                 sizeof(input_gain),
-                 "gain-%s",
-                 input_route);
-        audio_route_apply_path(adev->ar, input_gain);
+        input_gain = "gain-" + input_gain;
+        audio_route_apply_path(adev->ar, input_gain.c_str());
         ALOGV("%s: Applying gain [%s] for route [%s]", __func__,
-              input_gain, input_route);
+              input_gain.c_str(), input_route.c_str());
     }
     audio_route_update_mixer(adev->ar);
 }
@@ -558,9 +553,10 @@ static void select_devices(struct audio_device *adev)
 static void force_non_hdmi_out_standby(struct audio_device *adev)
 {
     enum output_type type;
+    const output_type firstType = OUTPUT_DEEP_BUF;
     struct stream_out *out;
 
-    for (type = 0; type < OUTPUT_TOTAL; ++type) {
+    for (type = firstType; type < OUTPUT_TOTAL; type = output_type(type + 1)) {
         out = adev->outputs[type];
         if (type == OUTPUT_HDMI || !out)
             continue;
@@ -818,7 +814,7 @@ static void stop_call(struct audio_device *adev)
     adev->in_call = false;
 }
 
-static void adev_set_wb_amr_callback(void *data, int enable)
+void adev_set_wb_amr_callback(void *data, int enable)
 {
     struct audio_device *adev = (struct audio_device *)data;
 
@@ -1078,8 +1074,8 @@ static ssize_t read_frames(struct stream_in *in, void *buffer, ssize_t frames)
                                                   &frames_rd);
         } else {
             struct resampler_buffer buf = {
-                { raw : NULL, },
-                frame_count : frames_rd,
+                { .raw = NULL, },
+                .frame_count = frames_rd,
             };
             get_next_buffer(&in->buf_provider, &buf);
             if (buf.raw != NULL) {
@@ -1149,9 +1145,10 @@ static audio_devices_t output_devices(struct stream_out *out)
 {
     struct audio_device *dev = out->dev;
     enum output_type type;
+    const output_type firstType = OUTPUT_DEEP_BUF;
     audio_devices_t devices = AUDIO_DEVICE_NONE;
 
-    for (type = 0; type < OUTPUT_TOTAL; ++type) {
+    for (type = firstType; type < OUTPUT_TOTAL; type = output_type(type + 1)) {
         struct stream_out *other = dev->outputs[type];
         if (other && (other != out) && !other->standby) {
             // TODO no longer accurate
@@ -1202,8 +1199,10 @@ static void do_out_standby(struct stream_out *out)
 static void lock_all_outputs(struct audio_device *adev)
 {
     enum output_type type;
+    const output_type firstType = OUTPUT_DEEP_BUF;
+
     pthread_mutex_lock(&adev->lock_outputs);
-    for (type = 0; type < OUTPUT_TOTAL; ++type) {
+    for (type = firstType; type < OUTPUT_TOTAL; type = output_type(type + 1)) {
         struct stream_out *out = adev->outputs[type];
         if (out)
             pthread_mutex_lock(&out->lock);
@@ -1214,14 +1213,16 @@ static void lock_all_outputs(struct audio_device *adev)
 /* unlock device, all output streams (except specified stream), and outputs list */
 static void unlock_all_outputs(struct audio_device *adev, struct stream_out *except)
 {
-    /* unlock order is irrelevant, but for cleanliness we unlock in reverse order */
+    enum output_type type;
+    const output_type firstType = OUTPUT_DEEP_BUF;
+
+    /* unlock order is irrelevant */
     pthread_mutex_unlock(&adev->lock);
-    enum output_type type = OUTPUT_TOTAL;
-    do {
-        struct stream_out *out = adev->outputs[--type];
+    for (type = firstType; type < OUTPUT_TOTAL; type = output_type(type + 1)) {
+        struct stream_out *out = adev->outputs[type];
         if (out && out != except)
             pthread_mutex_unlock(&out->lock);
-    } while (type != (enum output_type) 0);
+    }
     pthread_mutex_unlock(&adev->lock_outputs);
 }
 
@@ -1343,7 +1344,7 @@ static char *out_get_parameters(const struct audio_stream *stream, const char *k
                     if (!first) {
                         strcat(value, "|");
                     }
-                    strcat(value, out_channels_name_to_enum_table[j].name);
+                    strcat(value, out_channels_name_to_enum_table[j].name.c_str());
                     first = false;
                     break;
                 }
@@ -1606,7 +1607,7 @@ static int in_set_parameters(struct audio_stream *stream, const char *kvpairs)
         val = atoi(value);
         /* no audio source uses val == 0 */
         if ((in->input_source != val) && (val != 0)) {
-            in->input_source = val;
+            in->input_source = static_cast<audio_source_t>(val);
             apply_now = !in->standby;
         }
     }
@@ -1711,7 +1712,7 @@ static ssize_t in_read(struct audio_stream_in *stream, void* buffer,
         ret = 0;
 
     if (in->ramp_frames > 0)
-        in_apply_ramp(in, buffer, frames_rq);
+        in_apply_ramp(in, reinterpret_cast<int16_t*>(buffer), frames_rq);
 
     /*
      * Instead of writing zeroes here, we could trust the hardware
@@ -1851,11 +1852,12 @@ static void adev_close_output_stream(struct audio_hw_device *dev,
 {
     struct audio_device *adev;
     enum output_type type;
+    const output_type firstType = OUTPUT_DEEP_BUF;
 
     out_standby(&stream->common);
     adev = (struct audio_device *)dev;
     pthread_mutex_lock(&adev->lock_outputs);
-    for (type = 0; type < OUTPUT_TOTAL; type++) {
+    for (type = firstType; type < OUTPUT_TOTAL; type = output_type(type + 1)) {
         if (adev->outputs[type] == (struct stream_out *) stream) {
             adev->outputs[type] = NULL;
             break;
@@ -2071,8 +2073,9 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     &pcm_config_in_low_latency : &pcm_config_in;
     in->config = pcm_config;
 
-    in->buffer = malloc(pcm_config->period_size * pcm_config->channels
-                        * audio_stream_in_frame_size(&in->stream));
+    ssize_t bufSize = pcm_config->period_size * pcm_config->channels
+                        * audio_stream_in_frame_size(&in->stream);
+    in->buffer = new int16_t[bufSize];
 
     if (!in->buffer) {
         ret = -ENOMEM;
@@ -2157,7 +2160,7 @@ static int adev_open(const hw_module_t* module, const char* name,
         return -EINVAL;
     }
 
-    adev = calloc(1, sizeof(struct audio_device));
+    adev = (audio_device*) calloc(1, sizeof(struct audio_device));
     if (adev == NULL) {
         return -ENOMEM;
     }
@@ -2205,7 +2208,7 @@ static int adev_open(const hw_module_t* module, const char* name,
         ALOGV("%s: Forcing voice config: %s", __func__, voice_config);
     } else {
         /* register callback for wideband AMR setting */
-        ril_register_set_wb_amr_callback(adev_set_wb_amr_callback, (void *)adev);
+        ril_register_set_callback_data(adev);
     }
 
     /* Two mic control */
