@@ -1,5 +1,9 @@
 /*
- * Copyright (C) 2013 The CyanogenMod Project
+ * Copyright (c) 2015-2016 Andreas Schneider <asn@cryptomilk.org>
+ * Copyright (C) 2013-2016 The CyanogenMod Project
+ *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
+ *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
+ *               Christopher N. Hesse <raymanfx@gmail.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +18,16 @@
  * limitations under the License.
  */
 
-#ifndef RIL_INTERFACE_H
-#define RIL_INTERFACE_H
+#ifndef _RIL_INTERFACE_H_
+#define _RIL_INTERFACE_H_
 
 #include <telephony/ril.h>
 #include "secril-client.h"
 
 struct ril_handle
 {
-    void *client;
+    // HRilClient --> Ril_Client*
+    HRilClient client;
     int volume_steps_max;
 };
 
@@ -48,6 +53,6 @@ int ril_set_two_mic_control(struct ril_handle *ril,
                             enum __TwoMicSolDevice device,
                             enum __TwoMicSolReport report);
 
-void ril_register_set_wb_amr_callback(void *function, void *data);
+void ril_register_set_callback_data(struct audio_device *adev);
 
 #endif
