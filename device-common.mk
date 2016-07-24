@@ -187,6 +187,8 @@ PRODUCT_PACKAGES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.debug_level=0x4948
 
+PRODUCT_CHARACTERISTICS := tablet
+
 # System properties
 -include $(LOCAL_PATH)/system_prop.mk
 
