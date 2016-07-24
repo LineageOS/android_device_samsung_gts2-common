@@ -1,5 +1,9 @@
 /*
- * Copyright (C) 2013 The CyanogenMod Project
+ * Copyright (c) 2015-2016 Andreas Schneider <asn@cryptomilk.org>
+ * Copyright (C) 2013-2016 The CyanogenMod Project
+ *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
+ *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
+ *               Christopher N. Hesse <raymanfx@gmail.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +20,8 @@
 
 #ifndef _ROUTING_H_
 #define _ROUTING_H_
+
+#include <string>
 
 enum {
     OUT_DEVICE_SPEAKER,
@@ -45,8 +51,8 @@ enum {
 };
 
 struct route_config {
-    const char * const output_route;
-    const char * const input_route;
+    const std::string output_route;
+    const std::string input_route;
 };
 
 const struct route_config voice_speaker = {

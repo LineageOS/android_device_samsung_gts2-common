@@ -1,4 +1,4 @@
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ LOCAL_MODULE := audio.primary.$(TARGET_BOOTLOADER_BOARD_NAME)
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SRC_FILES := audio_hw.c ril_interface.c
+LOCAL_SRC_FILES := audio_hw.cpp ril_interface.cpp
 
 ifeq ($(BOARD_USES_NEW_HDMI), true)
     LOCAL_CFLAGS += -DUSES_NEW_HDMI
