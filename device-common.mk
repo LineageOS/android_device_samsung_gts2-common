@@ -2,10 +2,7 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/gts2-common/overlay
 
 LOCAL_PATH := device/samsung/gts2-common
 
-###########################################################
-### RAMDISK
-###########################################################
-
+# Ramdisk
 PRODUCT_PACKAGES += \
     fstab.universal5433 \
     init.power.rc \
@@ -15,10 +12,7 @@ PRODUCT_PACKAGES += \
     init.universal5433.usb.rc \
     ueventd.universal5433.rc
 
-###########################################################
-### PERMISSONS
-###########################################################
-
+# Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
@@ -38,10 +32,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml
 
-###########################################################
-### DISPLAY
-###########################################################
-
+# Graphics
 PRODUCT_AAPT_CONFIG := xlarge hdpi xhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
@@ -56,10 +47,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AdvancedDisplay
 
-###########################################################
-### RADIO
-###########################################################
-
+# Radio
 PRODUCT_PACKAGES += \
     libxml2 \
     libprotobuf-cpp-full
@@ -69,10 +57,10 @@ PRODUCT_PACKAGES += \
     libsecril-client-sap \
     modemloader
 
-###########################################################
-### WIFI
-###########################################################
+PRODUCT_PACKAGES += \
+    SamsungServiceMode
 
+# WiFi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
@@ -92,10 +80,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
-###########################################################
-### AUDIO
-###########################################################
-
+# Audio
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
@@ -106,10 +91,7 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.primary.universal5433
 
-###########################################################
-### OMX/MEDIA
-###########################################################
-
+# Media
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
@@ -117,75 +99,44 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 
-###########################################################
-### POWER
-###########################################################
-
+# Power
 PRODUCT_PACKAGES += \
     power.universal5433
 
-###########################################################
-### LIGHTS
-###########################################################
-
+# Lights
 PRODUCT_PACKAGES += \
     lights.universal5433
 
-###########################################################
-### GPS
-###########################################################
-
+# GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
 
-###########################################################
-### CAMERA
-###########################################################
-
+# Camera wrapper
 PRODUCT_PACKAGES += \
     camera.universal5433
 
 PRODUCT_PACKAGES += \
     Snap
 
-###########################################################
-### TOUCHSCREEN
-###########################################################
-
+# Keys
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/gpio_keys_8.kl:/system/usr/keylayout/gpio_keys_8.kl \
     $(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:/system/usr/keylayout/sec_touchkey.kl
 
-###########################################################
-### STYLUS
-###########################################################
-
+# Touchscreen
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/ft5x06_ts.idc:/system/usr/idc/ft5x06_ts.idc \
     $(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:/system/usr/idc/Synaptics_HID_TouchPad.idc \
     $(LOCAL_PATH)/configs/idc/Synaptics_RMI4_TouchPad_Sensor.idc:/system/usr/idc/Synaptics_RMI4_TouchPad_Sensor.idc
 
-###########################################################
-### CHARGER
-###########################################################
-
+# Offmode charger
 PRODUCT_PACKAGES += \
     charger_res_images
 
-###########################################################
-### PACKAGES
-###########################################################
-
-PRODUCT_PACKAGES += \
-    SamsungServiceMode
-
-###########################################################
-### DEFAULT PROPS
-###########################################################
-
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.debug_level=0x4948
+# Samsung debug level
+#ADDITIONAL_DEFAULT_PROPERTIES += \
+#    ro.debug_level=0x4948
 
 PRODUCT_CHARACTERISTICS := tablet
 
