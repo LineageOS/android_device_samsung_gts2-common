@@ -131,8 +131,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/idc/Synaptics_RMI4_TouchPad_Sensor.idc:/system/usr/idc/Synaptics_RMI4_TouchPad_Sensor.idc
 
 # Offmode charger
+# Use cm images if available, aosp ones otherwise
 PRODUCT_PACKAGES += \
-    charger_res_images
+    charger_res_images \
+    cm_charger_res_images
 
 # Samsung debug level
 #ADDITIONAL_DEFAULT_PROPERTIES += \
