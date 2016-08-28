@@ -703,12 +703,6 @@ on property:ro.securestorage.knox=true
     restorecon -R /dev/.secure_storage
     start secure_storage
 
-# for ethernet		
-service dhcpcd_eth0 /system/bin/dhcpcd -ABKL		
-    class main		
-    disabled		
-    oneshot
-
 # SSWAP
 service swapon /sbin/sswap -s
     class core
