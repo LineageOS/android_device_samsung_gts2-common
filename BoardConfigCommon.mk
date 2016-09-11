@@ -37,6 +37,7 @@ TARGET_POWERHAL_VARIANT := samsung
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/gts2
+KERNEL_TOOLCHAIN_PREFIX := arm-linux-androideabi-
 
 # Use these flags if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
