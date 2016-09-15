@@ -112,9 +112,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     camera.universal5433
 
-PRODUCT_PACKAGES += \
-    Snap
-
 # Keys
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/gpio-keys.kl:/system/usr/keylayout/gpio-keys.kl \
