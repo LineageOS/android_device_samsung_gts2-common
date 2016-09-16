@@ -632,6 +632,7 @@ service ipsec-daemon /system/bin/IPSecService
 service battery_charger /sbin/healthd -c
     class charger
     critical
+    seclabel u:r:healthd:s0
 
 # LPM
 on property:ro.bootmode=charger
