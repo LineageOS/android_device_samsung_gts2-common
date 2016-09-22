@@ -217,9 +217,6 @@
          that can be set by the user. -->
     <integer name="config_screenBrightnessDim">10</integer>
 
-    <!-- Boolean to enable stk functionality on Samsung phones -->
-    <bool name="config_samsung_stk">true</bool>
-    
     <!-- Doze (Ambient display) -->
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
 
