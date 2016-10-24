@@ -516,6 +516,9 @@ on fs
     chown system system /sys/class/mdnie/mdnie/auto_brightness
     chown system system /sys/class/mdnie/mdnie/sensorRGB
 
+# Default MDNIE mode (cinema)
+    write /sys/class/mdnie/mdnie/mode 3
+
 # Copy DRM Key
     copy /system/app/wv.keys /factory/wv.keys
 
