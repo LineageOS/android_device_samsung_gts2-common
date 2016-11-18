@@ -119,9 +119,6 @@ WIFI_DRIVER_NVRAM_PATH           := "/etc/wifi/nvram_net.txt"
 WIFI_DRIVER_FW_PATH_STA          := "/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/etc/wifi/bcmdhd_apsta.bin"
 
-# Webkit
-ENABLE_WEBGL := true
-
 # WFD
 BOARD_USES_WFD := true
 
