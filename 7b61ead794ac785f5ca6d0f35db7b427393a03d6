@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df33271e_e15f260c",
+        "filename": "sepolicy/cameraserver.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-11-22T10:08:43Z",
+      "side": 1,
+      "message": "I\u0027m confused, who needs access to m2m1shot_jpeg now?\ncameraserver, mediaserver or both?",
+      "revId": "7b61ead794ac785f5ca6d0f35db7b427393a03d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df33271e_419a52c5",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-11-22T10:08:43Z",
+      "side": 1,
+      "message": "Does not belong into this commit..?",
+      "revId": "7b61ead794ac785f5ca6d0f35db7b427393a03d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}

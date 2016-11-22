@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "df33271e_a1651ee4",
+        "filename": "sepolicy/mediaserver.te",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-11-22T10:08:43Z",
+      "side": 0,
+      "message": "Why did you remove these?",
+      "revId": "0dde9b796383270bc39bedcdbf3e1641df501df3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
