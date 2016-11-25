@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f681702_74af4194",
+        "filename": "BoardConfigCommon.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 15776
+      },
+      "writtenOn": "2016-11-25T23:04:05Z",
+      "side": 1,
+      "message": "This is enabled by default https://review.cyanogenmod.org/#/c/168501/",
+      "revId": "52c56ffb73e0117a18eddce0623ec3225074cd23",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
