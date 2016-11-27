@@ -66,6 +66,9 @@ SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 # Avoid buffer swap timing issues
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
+# Mixer
+BOARD_USE_BGRA_8888 := true
+
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
