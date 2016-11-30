@@ -1,0 +1,13 @@
+TARGET_ARCH := arm
+
+# Platform
+TARGET_BOARD_PLATFORM := exynos5
+TARGET_SOC := exynos5433
+
+# CPU
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_VARIANT := cortex-a53.a57
+
+TARGET_BOOTLOADER_BOARD_NAME := universal5433
