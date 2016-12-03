@@ -123,7 +123,7 @@ enum {
     /* buffer will be used by the HW IPs when sysmmu is off */
     GRALLOC_USAGE_PHYSICALLY_LINEAR     = 0x01000000,
     /* mask for the software usage bit-mask */
-    GRALLOC_USAGE_HW_MASK               = 0x00079F00,
+    GRALLOC_USAGE_HW_MASK               = 0x00071F00,
 
     /* buffer will be used as a RenderScript Allocation */
     GRALLOC_USAGE_RENDERSCRIPT          = 0x00100000,
@@ -152,19 +152,6 @@ enum {
     GRALLOC_USAGE_EXTERNAL_ONLY         = 0x80000000,
     GRALLOC_USAGE_EXTERNAL_VIRTUALFB    = 0x00400000,
     GRALLOC_USAGE_PRIVATE_NONSECURE     = 0x02000000,
-
-#ifdef EXYNOS4_ENHANCEMENTS
-    /* SAMSUNG */
-    GRALLOC_USAGE_PRIVATE_NONECACHE     = 0x00800000,
-
-    GRALLOC_USAGE_HW_FIMC1              = 0x01000000,
-    GRALLOC_USAGE_HW_ION                = 0x02000000,
-    GRALLOC_USAGE_YUV_ADDR              = 0x04000000,
-    GRALLOC_USAGE_CAMERA                = 0x08000000,
-
-    /* SEC Private usage , for Overlay path at HWC */
-    GRALLOC_USAGE_HWC_HWOVERLAY         = 0x20000000,
-#endif
 
     GRALLOC_USAGE_GPU_BUFFER            = 0x00800000,
 };
