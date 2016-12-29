@@ -33,27 +33,15 @@
 #include <err.h>
 #include <stdint.h>
 
+/* must be provided by the device tree */
+#include <samsung_dtbh.h>
+
 #include "libfdt.h"
 #include "mincrypt/sha.h"
 #include "bootimg.h"
 
-#define DTBH_MAGIC         "DTBH"
-#define DTBH_VERSION       2
-#define DTBH_PLATFORM      "slte"
-#define DTBH_SUBTYPE       "slte_eur_open"
- /* Hardcoded entry */
-#define DTBH_PLATFORM_CODE 0x32a3
-#define DTBH_SUBTYPE_CODE  0x36d0a7a1
-
 struct dt_blob;
 
-/* DTBH_MAGIC + DTBH_VERSION + DTB counts */
-#define DT_HEADER_PHYS_SIZE 12
-
-/*
- * keep the eight uint32_t entries first in this struct so we can memcpy them to the file
- */
-#define DT_ENTRY_PHYS_SIZE (sizeof(uint32_t) * 8)
 struct dt_entry {
     uint32_t chip;
     uint32_t platform;
