@@ -2,6 +2,10 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/gts2-common/overlay
 
 LOCAL_PATH := device/samsung/gts2-common
 
+# Flat device tree for boot image
+PRODUCT_PACKAGES += \
+    mkdtbhbootimg
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.universal5433 \
