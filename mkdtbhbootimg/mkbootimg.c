@@ -348,6 +348,7 @@ int main(int argc, char **argv)
     void *second_data = 0;
     char *cmdline = "";
     char *bootimg = 0;
+    char *dtimg = 0;
     char *board = "";
     char *dt_dir = 0;
     char *dt_fn = 0;
@@ -355,7 +356,7 @@ int main(int argc, char **argv)
     char *sig_fn = 0;
     void *sig_data = 0;
     unsigned pagesize = 2048;
-    int fd;
+    int fd, dt_fd;
     SHA_CTX ctx;
     uint8_t* sha;
     unsigned base           = 0x10000000;
@@ -379,6 +380,12 @@ int main(int argc, char **argv)
         argv += 2;
         if(!strcmp(arg, "--output") || !strcmp(arg, "-o")) {
             bootimg = val;
+            // Construct the dt.img output path
+            char const *bootimg_name = "boot.img";
+            dtimg = malloc(strlen(bootimg));
+            strncpy(dtimg, bootimg, strlen(bootimg));
+            char *tmp = strstr(dtimg, bootimg_name);
+            strncpy(tmp, "dt.img", strlen(bootimg_name));
         } else if(!strcmp(arg, "--kernel")) {
             kernel_fn = val;
         } else if(!strcmp(arg, "--ramdisk")) {
@@ -528,6 +535,21 @@ int main(int argc, char **argv)
     if(fd < 0) {
         fprintf(stderr,"error: could not create '%s'\n", bootimg);
         return 1;
+    }
+
+    if(dtimg) {
+        dt_fd = open(dtimg, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+        if (fd < 0) {
+            fprintf(stderr,"error: could not create '%s'\n", dtimg);
+            // fall through
+        } else {
+            if(write(dt_fd, dt_data, hdr.dt_size) != hdr.dt_size) {
+                fprintf(stderr,"error: could not write '%s'\n", dtimg);
+                // fall through
+            }
+        }
+        if(fd >= 0) close(dt_fd);
+        if(dtimg) free(dtimg);
     }
 
     if(write(fd, &hdr, sizeof(hdr)) != sizeof(hdr)) goto fail;
