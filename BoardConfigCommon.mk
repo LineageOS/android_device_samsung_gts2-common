@@ -8,6 +8,7 @@ TARGET_NO_RADIOIMAGE := true
 
 # Extracted with libbootimg
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
+BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkdtbhbootimg.mk
 
 # Include path
