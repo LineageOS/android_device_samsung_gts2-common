@@ -7,9 +7,10 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Extracted with libbootimg
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_SEPARATED_DT := true
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
-BOARD_CUSTOM_BOOTIMG := true
-BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkdtbhbootimg.mk
+TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH += $(LOCAL_PATH)/include

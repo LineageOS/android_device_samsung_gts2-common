@@ -4,7 +4,7 @@ LOCAL_PATH := device/samsung/gts2-common
 
 # Flat device tree for boot image
 PRODUCT_PACKAGES += \
-    mkdtbhbootimg
+    dtbhtoolExynos
 
 # Ramdisk
 PRODUCT_PACKAGES += \
