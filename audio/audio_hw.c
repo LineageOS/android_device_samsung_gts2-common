@@ -271,6 +271,7 @@ struct stream_in {
     struct audio_device *dev;
 
     int64_t last_read_time_us;
+    int64_t frames_read; /* total frames read, not cleared when entering standby */
 };
 
 #define STRING_TO_ENUM(string) { #string, string }
@@ -608,7 +609,7 @@ static void start_bt_sco(struct audio_device *adev)
 
     adev->pcm_sco_tx = pcm_open(PCM_CARD,
                                 PCM_DEVICE_SCO,
-                                PCM_IN,
+                                PCM_IN | PCM_MONOTONIC,
                                 sco_config);
     if (adev->pcm_sco_tx && !pcm_is_ready(adev->pcm_sco_tx)) {
         ALOGE("%s: cannot open PCM SCO TX stream: %s",
@@ -684,7 +685,7 @@ static int start_voice_call(struct audio_device *adev)
 
     adev->pcm_voice_tx = pcm_open(PCM_CARD,
                                   PCM_DEVICE_VOICE,
-                                  PCM_IN,
+                                  PCM_IN | PCM_MONOTONIC,
                                   voice_config);
     if (adev->pcm_voice_tx != NULL && !pcm_is_ready(adev->pcm_voice_tx)) {
         ALOGE("%s: cannot open PCM voice TX stream: %s",
@@ -948,7 +949,7 @@ static int start_input_stream(struct stream_in *in)
 
     in->pcm = pcm_open(PCM_CARD,
                        PCM_DEVICE,
-                       PCM_IN,
+                       PCM_IN | PCM_MONOTONIC,
                        in->config);
     if (in->pcm && !pcm_is_ready(in->pcm)) {
         ALOGE("pcm_open() failed: %s", pcm_get_error(in->pcm));
@@ -1780,6 +1781,8 @@ exit:
         // On the subsequent in_read(), we measure the elapsed time spent in
         // the recording thread. This is subtracted from the sleep estimate based on frames,
         // thereby accounting for fill in the alsa buffer during the interim.
+    } else {
+        in->frames_read += bytes / audio_stream_in_frame_size(stream);
     }
 
     pthread_mutex_unlock(&in->lock);
@@ -1789,6 +1792,31 @@ exit:
 static uint32_t in_get_input_frames_lost(struct audio_stream_in *stream __unused)
 {
     return 0;
+}
+
+static int in_get_capture_position(const struct audio_stream_in *stream,
+                                   int64_t *frames, int64_t *time)
+{
+    if (stream == NULL || frames == NULL || time == NULL) {
+        return -EINVAL;
+    }
+
+    struct stream_in *in = (struct stream_in *)stream;
+    int ret = -ENOSYS;
+
+    pthread_mutex_lock(&in->lock);
+    if (in->pcm) {
+        struct timespec timestamp;
+        unsigned int avail;
+        if (pcm_get_htimestamp(in->pcm, &avail, &timestamp) == 0) {
+            *frames = in->frames_read + avail;
+            *time = timestamp.tv_sec * 1000000000LL + timestamp.tv_nsec;
+            ret = 0;
+        }
+    }
+
+    pthread_mutex_unlock(&in->lock);
+    return ret;
 }
 
 static int in_add_audio_effect(const struct audio_stream *stream __unused,
@@ -2114,6 +2142,7 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     in->stream.set_gain = in_set_gain;
     in->stream.read = in_read;
     in->stream.get_input_frames_lost = in_get_input_frames_lost;
+    in->stream.get_capture_position = in_get_capture_position;
 
     in->dev = adev;
     in->standby = true;
@@ -2124,6 +2153,7 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     in->io_handle = handle;
     in->channel_mask = config->channel_mask;
     in->flags = flags;
+    // in->frames_read = 0;
     struct pcm_config *pcm_config = flags & AUDIO_INPUT_FLAG_FAST ?
     &pcm_config_in_low_latency : &pcm_config_in;
     in->config = pcm_config;
