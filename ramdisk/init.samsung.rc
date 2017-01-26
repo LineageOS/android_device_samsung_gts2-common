@@ -69,9 +69,9 @@ on post-fs-data
     restorecon /data/anr
 
     # mobicore
-    mkdir /data/app/mcRegistry 0775 drmrpc drmrpc
-    mkdir /data/app/mcRegistry/TbStorage 0700 drmrpc drmrpc
-    mkdir /efs/TEE  0770 radio drmrpc
+    mkdir /data/app/mcRegistry 0775 system system
+    mkdir /data/app/mcRegistry/TbStorage 0700 system system
+    mkdir /efs/TEE  0770 radio system
 
     # MTP permission
     chmod 0660 /dev/usb_mtp_gadget
@@ -219,13 +219,9 @@ on boot
 
     # mobicore
     chmod 0660 /dev/s5p-smem
-    chown drmrpc drmrpc /dev/s5p-smem
-    chmod 0700 /dev/mobicore
-    chmod 0666 /dev/mobicore-user
-    chown drmrpc drmrpc /dev/mobicore
-    chown drm drmrpc /dev/mobicore-user
+    chown system system /dev/s5p-smem
     chmod 0660 /dev/t-base-tui
-    chown drmrpc drmrpc /dev/t-base-tui
+    chown system system /dev/t-base-tui
     export MC_AUTH_TOKEN_PATH /efs
 
     chown system system /sys/class/timed_output/vibrator/intensity
@@ -471,7 +467,6 @@ on charger
 
 # MobiCore startup
 service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
-    class main
-    user drmrpc
-    group drmrpc
-    oneshot
+    class core
+    user system
+    group system
