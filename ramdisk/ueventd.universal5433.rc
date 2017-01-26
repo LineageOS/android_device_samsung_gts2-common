@@ -305,6 +305,13 @@
 /sys/devices/i2c.34/i2c-12/12-0028/iio:device* scan_elements/in_timestamp_en		0760  system   radio
 /sys/devices/i2c.34/i2c-12/12-0028/iio:device* scan_elements				0760  system   radio
 
+# MobiCore
+/dev/mobicore             0700   system     system
+/dev/mobicore-user        0666   radio     system
+
+# Secure MEM driver
+/dev/s5p-smem             0660   system     system
+
 # sensorhub
 /dev/ssp_sensorhub        0660   system     system
 /dev/ssp_data_injection   0660   system     system
