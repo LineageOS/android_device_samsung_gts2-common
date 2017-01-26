@@ -56,3 +56,8 @@ vendor/lib/libwvdrm_L1.so
 vendor/lib/libwvm.so
 vendor/lib/libWVphoneAPI.so
 vendor/lib/libWVStreamControlAPI_L1.so
+
+### Mobicore
+bin/mcDriverDaemon
+lib/libMcRegistry.so
+lib/libMcClient.so
