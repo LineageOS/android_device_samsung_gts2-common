@@ -61,3 +61,10 @@ vendor/lib/libWVStreamControlAPI_L1.so
 bin/mcDriverDaemon
 lib/libMcRegistry.so
 lib/libMcClient.so
+
+### Fingerprint
+lib/hw/fingerprint.default.so
+lib/libbauthserver.so
+lib/libbauthtzcommon.so
+lib/libsynaFpSensorTestNwd.so
+lib/libegis_fp_normal_sensor_test.so
