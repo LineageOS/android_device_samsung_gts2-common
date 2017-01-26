@@ -50,7 +50,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    fingerprintd
+    fingerprintd \
+    libbauthtzcommon_shim
 
 # Offmode charger
 # Use cm images if available, aosp ones otherwise
