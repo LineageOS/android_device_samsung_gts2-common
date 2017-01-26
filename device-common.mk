@@ -47,6 +47,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SamsungServiceMode
 
+# Fingerprint
+PRODUCT_PACKAGES += \
+    libbauthtzcommon_shim
+
 # Offmode charger
 # Use cm images if available, aosp ones otherwise
 PRODUCT_PACKAGES += \
