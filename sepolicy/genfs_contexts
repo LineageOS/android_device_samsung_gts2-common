@@ -1,0 +1,6 @@
+####################################
+# debugfs files
+#
+
+# memtrack Hal
+genfscon debugfs "/sys/kernel/debug/mali/mem/" u:object_r:debugfs_mali:s0

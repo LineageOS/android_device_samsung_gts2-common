@@ -17,4 +17,7 @@ type sysfs_mdnie_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_mipi_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_multipdp_writable, fs_type, sysfs_type, mlstrustedobject;
 
+### debugfs types
+type debugfs_mali, fs_type;
+
 allow sysfs_type tmpfs:filesystem associate;
