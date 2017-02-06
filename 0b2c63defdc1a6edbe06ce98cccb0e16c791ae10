@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a288981_f8781e2d",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2017-02-06T19:42:15Z",
+      "side": 1,
+      "message": "might be a bit superflouus, u:object_r:debugfs:s0 should be okay I guess?",
+      "revId": "0b2c63defdc1a6edbe06ce98cccb0e16c791ae10",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a288981_187c0a20",
+        "filename": "sepolicy/system_server.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2017-02-06T19:42:15Z",
+      "side": 1,
+      "message": "We probably want r_dir_perms and r_file_perms for all files in the directory.",
+      "revId": "0b2c63defdc1a6edbe06ce98cccb0e16c791ae10",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
