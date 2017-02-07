@@ -48,14 +48,8 @@ lib/omx/libOMX.Exynos.AVC.Encoder.so
 lib/libyasalgo.so
 lib/hw/sensors.exynos5.so
 
-### Widevine
-vendor/lib/drm/libdrmwvmplugin.so
+### Widevine (L3 only, L1 will never work)
 vendor/lib/mediadrm/libwvdrmengine.so
-vendor/lib/libdrmdecrypt.so
-vendor/lib/libwvdrm_L1.so
-vendor/lib/libwvm.so
-vendor/lib/libWVphoneAPI.so
-vendor/lib/libWVStreamControlAPI_L1.so
 
 ### Mobicore
 bin/mcDriverDaemon
