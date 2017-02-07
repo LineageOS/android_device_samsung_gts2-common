@@ -13,6 +13,9 @@
 /dev/block/platform/15540000.dwmmc0/by-name/USERDATA		/data		f2fs	noatime,nosuid,nodev,nodiratime,inline_xattr												wait,check,formattable,encryptable=footer
 /dev/block/platform/15540000.dwmmc0/by-name/USERDATA		/data		ext4	noatime,nosuid,nodev,discard,noauto_da_alloc,journal_async_commit,errors=panic				wait,check,encryptable=footer
 
+# Updater service
+/dev/block/platform/15540000.dwmmc0/by-name/OTA				/misc   	emmc	defaults																					defaults
+
 # VOLD
 /dev/block/platform/15540000.dwmmc0/by-name/HIDDEN			preload		ext4	default																						voldmanaged=preload:auto
 /devices/15560000.dwmmc2/mmc_host/mmc*						auto 		auto	defaults																					voldmanaged=sdcard:auto,encryptable=userdata
