@@ -23,7 +23,22 @@ TARGET_SCREEN_HEIGHT := 2048
 TARGET_SCREEN_WIDTH := 1536
 
 # Recovery
+BOARD_HAS_DOWNLOAD_MODE := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/ramdisk/fstab.universal5433
+
+# TWRP
+#TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery/twrp.fstab
+#RECOVERY_GRAPHICS_USE_LINELENGTH := true
+#RECOVERY_TOUCHSCREEN_SWAP_XY := true
+#RECOVERY_TOUCHSCREEN_FLIP_Y := true
+#TW_THEME := landscape_hdpi
+#TW_BRIGHTNESS_PATH := /sys/class/backlight/panel/brightness
+#TW_MAX_BRIGHTNESS := 255
+#TW_NO_REBOOT_BOOTLOADER := true
+#TW_INCLUDE_CRYPTO := true
+#TW_HAS_DOWNLOAD_MODE := true
+#TW_NO_EXFAT_FUSE := true
+#TW_EXCLUDE_SUPERSU := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/samsung/gts2-common/sepolicy
