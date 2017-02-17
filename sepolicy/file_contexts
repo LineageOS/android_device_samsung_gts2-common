@@ -17,11 +17,6 @@
 
 /dev/mtp_usb*                u:object_r:mtp_device:s0
 
-/dev/__cbd_msg_              u:object_r:mif_device:s0
-/dev/umts.*                  u:object_r:mif_device:s0
-/dev/ehci_power              u:object_r:mif_device:s0
-/dev/mipi-lli/lli_control    u:object_r:mif_device:s0
-
 /dev/ttySAC[0-9]*            u:object_r:gps_device:s0
 
 /dev/block/mmcblk0p[0-9]*    u:object_r:emmcblk_device:s0
@@ -88,15 +83,6 @@
 # camera
 /sys/devices/virtual/camera/.*/.*_camfw           u:object_r:camera_device:s0
 
-# CP device
-/dev/spi_boot_link              u:object_r:radio_device:s0
-
-# cbd
-/sys/devices/10f24000.mipi-lli/lli_control  u:object_r:sysfs_mipi_writable:s0
-
-# rild
-/sys/devices/virtual/misc/multipdp(/.*)     u:object_r:sysfs_multipdp_writable:s0
-
 # mDNIe
 /sys/devices/[0-9]*.decon_fb/lcd/panel/mdnie/mode       u:object_r:sysfs_mdnie_writable:s0
 /sys/devices/[0-9]*.decon_fb/lcd/panel/mdnie/scenario   u:object_r:sysfs_mdnie_writable:s0
@@ -107,9 +93,7 @@
 
 /system/bin/mcDriverDaemon   -- u:object_r:tee_exec:s0
 /system/bin/macloader        -- u:object_r:macloader_exec:s0
-/system/bin/modemloader      -- u:object_r:modemloader_exec:s0
 /system/bin/sensorhubservice -- u:object_r:sensorhubservice_exec:s0
 /system/bin/wifiloader       -- u:object_r:wifiloader_exec:s0
 
-/system/bin/cbd              -- u:object_r:cpboot-daemon_exec:s0
 /system/bin/gpsd             -- u:object_r:gpsd_exec:s0
