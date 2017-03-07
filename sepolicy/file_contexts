@@ -91,9 +91,9 @@
 # deamons
 #
 
-/system/bin/mcDriverDaemon   -- u:object_r:tee_exec:s0
-/system/bin/macloader        -- u:object_r:macloader_exec:s0
-/system/bin/sensorhubservice -- u:object_r:sensorhubservice_exec:s0
-/system/bin/wifiloader       -- u:object_r:wifiloader_exec:s0
+/system/bin/mcDriverDaemon   u:object_r:tee_exec:s0
+/system/bin/macloader        u:object_r:macloader_exec:s0
+/system/bin/sensorhubservice u:object_r:sensorhubservice_exec:s0
+/system/bin/wifiloader       u:object_r:wifiloader_exec:s0
 
-/system/bin/gpsd             -- u:object_r:gpsd_exec:s0
+/system/bin/gpsd             u:object_r:gpsd_exec:s0
