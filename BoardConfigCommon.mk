@@ -47,7 +47,7 @@ endif
 BOARD_SEPOLICY_DIRS += device/samsung/gts2-common/sepolicy
 
 # Seccomp filters
-BOARD_SECCOMP_POLICY += device/samsung/gts2-common/seccomp
+BOARD_SECCOMP_POLICY := device/samsung/gts2-common/seccomp
 
 # Inherit board specific defines
 include $(LOCAL_PATH)/board_defines/*.mk
