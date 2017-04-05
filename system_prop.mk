@@ -1,3 +1,13 @@
+# Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    af.fast_track_multiplier=1
+
+# Bluetooth workaround:
+# The new CAF code defaults to MCT HAL, but we
+# need the old H4 HAL for our Broadcom WiFi.
+PRODUCT_PROPERTY_OVERRIDES += \
+    qcom.bluetooth.soc=rome
+
 # Dalvik/Art
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sys.fw.dex2oat_thread_count=4 \
@@ -24,6 +34,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_large_cache_height=2048 \
     ro.hwui.fbo_cache_size=16
 
+# Media/OMX
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.legacyencoder=1 \
+    media.stagefright.less-secure=1
+
 # Network
 # Define default initial receive window size in segments.
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -32,6 +47,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Nfc
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.nfc.port="I2C"
+
+# WiFi
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0
 
 # By default rotate lockscreen so user switch is possible
 PRODUCT_PROPERTY_OVERRIDES += \
