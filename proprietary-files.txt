@@ -1,17 +1,17 @@
 ### Wifi
 # firmware
 etc/wifi/bcmdhd_apsta.bin
-etc/wifi/bcmdhd_apsta.bin_4356_a2
-etc/wifi/bcmdhd_apsta.bin_4358_a1
+etc/wifi/bcmdhd_apsta.bin_4358
+etc/wifi/bcmdhd_apsta.bin_a1
 etc/wifi/bcmdhd_ibss.bin
-etc/wifi/bcmdhd_ibss.bin_4356_a2
-etc/wifi/bcmdhd_ibss.bin_4358_a1
+etc/wifi/bcmdhd_ibss.bin_4358
+etc/wifi/bcmdhd_ibss.bin_a1
 etc/wifi/bcmdhd_mfg.bin
-etc/wifi/bcmdhd_mfg.bin_4356_a2
-etc/wifi/bcmdhd_mfg.bin_4358_a1
+etc/wifi/bcmdhd_mfg.bin_4358
+etc/wifi/bcmdhd_mfg.bin_a1
 etc/wifi/bcmdhd_sta.bin
-etc/wifi/bcmdhd_sta.bin_4356_a2
-etc/wifi/bcmdhd_sta.bin_4358_a1
+etc/wifi/bcmdhd_sta.bin_4358
+etc/wifi/bcmdhd_sta.bin_a1
 etc/wifi/cred.conf
 
 ### Media
@@ -53,8 +53,8 @@ vendor/lib/mediadrm/libwvdrmengine.so
 
 ### Mobicore
 bin/mcDriverDaemon
-lib/libMcRegistry.so
-lib/libMcClient.so
+vendor/lib/libMcRegistry.so
+vendor/lib/libMcClient.so
 
 ### Fingerprint
 lib/libbauthserver.so

@@ -10,15 +10,49 @@ on early-init
 on init
     export LD_SHIM_LIBS "/system/lib/hw/fingerprint.default.so|/system/lib/libbauthtzcommon_shim.so"
 
-    mkdir /preload 0771 system system
+    # See storage config details at http://source.android.com/tech/storage/
+    mkdir /mnt/media_rw/extSdCard 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveA 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveB 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveC 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveD 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveE 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveF 0700 media_rw media_rw
+
+    # See storage config details at http://source.android.com/tech/storage/     
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
 
     # Support legacy paths
-    symlink /sdcard /storage/sdcard0
+    symlink /sdcard /mnt/sdcard
+
+    export EXTERNAL_STORAGE /sdcard
+
+    # map "real" external storages paths also in same way. backwards compatibility.
+    symlink /storage/extSdCard /mnt/extSdCard
+    symlink /storage/UsbDriveA /mnt/UsbDriveA
+    symlink /storage/UsbDriveB /mnt/UsbDriveB
+    symlink /storage/UsbDriveC /mnt/UsbDriveC
+    symlink /storage/UsbDriveD /mnt/UsbDriveD
+    symlink /storage/UsbDriveE /mnt/UsbDriveE
+    symlink /storage/UsbDriveF /mnt/UsbDriveF
+
+    export SECONDARY_STORAGE /storage/extSdCard
+
+    mkdir /storage/extSdCard 0700 root root
+    mkdir /storage/UsbDriveA 0700 root root
+    mkdir /storage/UsbDriveB 0700 root root
+    mkdir /storage/UsbDriveC 0700 root root
+    mkdir /storage/UsbDriveD 0700 root root
+    mkdir /storage/UsbDriveE 0700 root root
+    mkdir /storage/UsbDriveF 0700 root root
+
     symlink /sdcard1 /storage/sdcard1
     symlink /sdcard1 /external_sd
 
     symlink /data/app /factory
     symlink /dev/block/platform/15540000.dwmmc0/by-name/PERSISTENT /dev/block/persistent
+
 
     mkdir /efs 0771 radio system
     symlink /dev/block/platform/15540000.dwmmc0/by-name/RADIO /dev/mbin0
@@ -30,10 +64,11 @@ on init
     chown system radio /dev/socket/msockets
 
 on post-fs-data
+    mkdir /data/media 0770 media_rw media_rw
+
     setprop vold.post_fs_data_done 1
 
     # Permissions Camera
-    mkdir /data/camera 0770 media system
     chown system radio /sys/class/camera/rear/rear_camfw
     chown system radio /sys/class/camera/rear/rear_camfw_full
     chown system radio /sys/class/camera/rear/rear_checkfw_user
@@ -45,7 +80,6 @@ on post-fs-data
     chown system radio /sys/class/camera/rear/isp_core
     chown system radio /sys/class/camera/rear/fw_update
     chown system radio /sys/class/camera/flash/rear_flash
-    chown media system /sys/class/camera/flash/rear_torch_flash
     chown system radio /sys/class/camera/front/front_camfw
     chown system radio /sys/class/camera/front/front_camtype
     chown system radio /sys/class/camera/ois/selftest
@@ -61,17 +95,31 @@ on post-fs-data
     chown system system /data/privatemode
     restorecon /data/privatemode
 
+# GPS
+    chown root system /dev/ttySAC0
+    chmod 0660 /dev/ttySAC0
+    chown root system /sys/class/sec/gps/GPS_PWR_EN/value
+    chmod 0664 /sys/class/sec/gps/GPS_PWR_EN/value
+    mkdir /data/system 0771 system system
+    chown system system /data/system
+    mkdir /data/system/gps 0771 system system
+    chown system system /data/system/gps
+    rm /data/system/gps/gps_started
+    rm /data/system/gps/glonass_started
+    rm /data/system/gps/beidou_started
+    rm /data/system/gps/smd_started
+    rm /data/system/gps/sv_cno.info
+
     # Vibrations
-    chown system system /sys/devices/virtual/timed_output/vibrator/enable
-    chown system system /sys/devices/virtual/timed_output/vibrator/intensity
-    # Default to 90% vibrator strength
-    write /sys/devices/virtual/timed_output/vibrator/intensity 9000
+    # Default to 70% vibrator strength
+    write /sys/devices/virtual/timed_output/vibrator/intensity 7000
 
 on boot
     # Reduce reserved lowmem from ~48MB to ~12MB
     write /proc/sys/vm/lowmem_reserve_ratio "128 128"
 
     # Permissions for bluetooth
+    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
     chown radio net_bt_stack /efs/bluetooth/bt_addr
     chmod 0640 /efs/bluetooth/bt_addr
@@ -91,7 +139,7 @@ on boot
     chmod 0600 /dev/btlock
     chown bluetooth bluetooth /dev/btlock
 
-	# DualWave
+    # DualWave
     chown system system /sys/kernel/DualWave/sound/DUALWAVE_CONFIG
 
     #setprop ro.radio.noril yes
@@ -121,8 +169,8 @@ on boot
 # CS socket
     mkdir /dev/socket/cs_socket 0770 system system
 
-# RTC logging daemon		
-    chmod 0770 /system/bin/rtc_log.sh		
+# RTC logging daemon
+    chmod 0770 /system/bin/rtc_log.sh
     chown system system /system/bin/rtc_log.sh
 
     # PMS DVFS
@@ -175,9 +223,9 @@ on boot
     chmod 0660 /sys/kernel/hmp/load_avg_period_ms
     chown system system /sys/kernel/hmp/up_threshold
     chmod 0660 /sys/kernel/hmp/up_threshold
-    write /sys/kernel/hmp/up_threshold 479		
-    chown system system /sys/kernel/hmp/down_threshold		
-    chmod 0660 /sys/kernel/hmp/down_threshold		
+    write /sys/kernel/hmp/up_threshold 479
+    chown system system /sys/kernel/hmp/down_threshold
+    chmod 0660 /sys/kernel/hmp/down_threshold
     write /sys/kernel/hmp/down_threshold 214
 
     # Change permission for interactive governor
@@ -300,12 +348,14 @@ on boot
 # MIF
     write /sys/module/modem_modemctl_device_m74xx/parameters/cp_watchdog_enable 1
 
+    # WLAN
+    write /proc/sys/net/ipv4/tcp_adv_win_scale  2
 
 on fs
     mount_all /fstab.universal5433
     setprop ro.crypto.fuse_sdcard true
 
-# Support Preload install apks		
+# Support Preload install apks
     mkdir /preload 0771 system system
 
     # For Absolute Persistence Partition
@@ -313,8 +363,7 @@ on fs
     mkdir /persdata/absolute 0750 system system
 
     wait /dev/block/platform/15540000.dwmmc0/by-name/PERSDATA
-    check_fs /dev/block/platform/15540000.dwmmc0/by-name/PERSDATA ext4
-    mount ext4 /dev/block/platform/15540000.dwmmc0/by-name/PERSDATA /persdata/absolute nosuid nodev barrier=1
+    mount ext4 /dev/block/platform/15540000.dwmmc0/by-name/PERSDATA /persdata/absolute nosuid nodev noatime noauto_da_alloc,discard,journal_async_commit,errors=panic
 
     chown system system /persdata
     chmod 0755 /persdata
@@ -331,23 +380,23 @@ on fs
     chown system system /dev/ttyGS2
     chown system system /dev/ttyGS3
 
-# MTP permission
+# MTP device permission
     chmod 0660 /dev/usb_mtp_gadget
-    chown system mtp /dev/usb_mtp_gadget
+    chown system system /dev/usb_mtp_gadget
 
-# Terminal version permission		
-    chown system system /sys/class/android_usb/android0/terminal_version		
+# Terminal version permission
+    chown system system /sys/class/android_usb/android0/terminal_version
     chmod 0660 /sys/class/android_usb/android0/terminal_version
 
 # Permissions for backlight
     chown system system /sys/class/backlight/panel/brightness
-    chown system system /sys/class/backlight/panel/auto_brightness
 
 # Permissions for LCD
     chown system radio /sys/class/lcd/panel/lcd_type
     chown system system /sys/class/lcd/panel/power_reduce
     chown system system /sys/class/lcd/panel/siop_enable
     chown system system /sys/class/lcd/panel/temperature
+    chown system system /sys/class/lcd/panel/lux
 
 # Permissions for TouchScreen
     chown system radio /sys/class/sec/tsp/cmd
@@ -376,33 +425,19 @@ on fs
     chown radio system /sys/class/sec/sec_key/wakeup_keys
     write /sys/class/sec/sec_key/wakeup_keys 116,172
 
-# GPS
-    chown root system /dev/ttySAC0		
-    chmod 0660 /dev/ttySAC0
-    chown root system /sys/class/sec/gps/GPS_PWR_EN/value
-    chmod 0664 /sys/class/sec/gps/GPS_PWR_EN/value
-    mkdir /data/system 0771 system system
-    chown system system /data/system
-    mkdir /data/system/gps 0771 system system
-    chown system system /data/system/gps
-    rm /data/system/gps/gps_started
-    rm /data/system/gps/glonass_started
-    rm /data/system/gps/beidou_started
-    rm /data/system/gps/smd_started
-    rm /data/system/gps/sv_cno.info
-
 # Audio (Earjack)
     chown system radio /sys/class/audio/earjack/select_jack
     chown system radio /sys/class/audio/earjack/key_state
     chown system radio /sys/class/audio/earjack/state
     chown system radio /sys/class/audio/earjack/mic_adc
     chown system radio /sys/class/dsm/max98504/dsm_log
-    mkdir /data/firmware 0770 media system		
-    chown media system /data/firmware		
-# Permissions for System LSI NFC		
-# NFC : Permissions for NFC		
-    chmod 0660 /dev/sec-nfc		
-# NFC : change owner		
+    mkdir /data/firmware 0770 media system
+    chown media system /data/firmware
+
+# Permissions for System LSI NFC
+# NFC : Permissions for NFC
+    chmod 0660 /dev/sec-nfc
+# NFC : change owner
     chown nfc nfc /dev/sec-nfc
 
 # MOBEAM
@@ -508,17 +543,14 @@ on fs
     chmod 0760 /sys/bus/iio/devices/iio:device10/trigger
     chmod 0760 /sys/bus/iio/devices/iio:device10/trigger/current_trigger
     chmod 0760 /sys/bus/iio/devices/iio:device10/scan_elements/in_grip_wifi_current_en
+    chmod 0760 /sys/bus/iio/devices/iio:device10/scan_elements/in_timestamp_en
     chmod 0760 /sys/bus/iio/devices/iio:device10/scan_elements
 
 # Permissions for MDNIE
     chown system media_rw /sys/class/mdnie/mdnie/mode
     chown system media_rw /sys/class/mdnie/mdnie/scenario
     chown system system /sys/class/mdnie/mdnie/accessibility
-    chown system system /sys/class/mdnie/mdnie/auto_brightness
     chown system system /sys/class/mdnie/mdnie/sensorRGB
-
-# Default MDNIE mode (cinema)
-    write /sys/class/mdnie/mdnie/mode 3
 
 # Copy DRM Key
     copy /system/app/wv.keys /factory/wv.keys
@@ -529,7 +561,7 @@ on fs
     chown radio system /efs
     chmod 0771 /efs
 
-# permission for CHARGING		
+# permission for CHARGING
     chown system radio /sys/class/power_supply/battery/batt_discharging_check
     chown system radio /sys/class/power_supply/battery/batt_discharging_check_adc
     chown system radio /sys/class/power_supply/battery/batt_self_discharging_control
@@ -570,6 +602,9 @@ on fs
 
 # ARGOSD network_throughput
     chown system system /dev/network_throughput
+
+# Default MDNIE mode (cinema)
+    write /sys/class/mdnie/mdnie/mode 3
 
 # ARGOSD
 service argos-daemon /system/bin/argosd
@@ -642,36 +677,22 @@ on property:ro.bootmode=charger
 
 on property:ro.bootmode=charger
     wait /dev/block/platform/15540000.dwmmc0/by-name/EFS
-    check_fs /dev/block/platform/15540000.dwmmc0/by-name/EFS ext4
-    mount ext4 /dev/block/platform/15540000.dwmmc0/by-name/EFS /efs nosuid nodev noatime noauto_da_alloc,discard,journal_async_commit
-
-on charger
-    # Set cpu governor to powersave while in charging mode
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
-
-    # EHCI runtime enable for LPA
-    write /sys/devices/platform/s5p-ehci/power/control auto
-
-    # Do not set any USB mode while charging
-    setprop sys.usb.config charging
+    mount ext4 /dev/block/platform/15540000.dwmmc0/by-name/EFS /efs nosuid nodev noatime noauto_da_alloc,discard,journal_async_commit,errors=panic
 
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main
     user gps
-    group system wakelock inet net_raw
+    group system inet net_raw wakelock
     ioprio be 0
 
 # SENSOR FRAMEWORK : starts fingerprintService
 service vcsFPService /system/bin/vcsFPService
-    class late_start		
-    user system		
+    class late_start
+    user system
     group system
 
-# FINGERPRINT FRAMEWORK : starts fingerprintd		
+# FINGERPRINT FRAMEWORK : starts fingerprintd
 service fingerprintd /system/bin/fingerprintd
     class late_start
     user system
@@ -709,6 +730,12 @@ on property:ro.securestorage.knox=true
     restorecon -R /dev/.secure_storage
     start secure_storage
 
+# for ethernet
+service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+
 # SSWAP
 service swapon /sbin/sswap -s
     class core
@@ -737,6 +764,6 @@ on property:persist.sys.storage_preload=1
 on property:persist.sys.storage_preload=0
     start umount_service
 
-# Reactivation lock		
-service reactived /system/bin/reactived		
+# Reactivation lock
+service reactived /system/bin/reactived
     class late_start

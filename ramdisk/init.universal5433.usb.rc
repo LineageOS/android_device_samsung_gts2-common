@@ -208,6 +208,23 @@ on property:sys.usb.config=askon,adb
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     setprop sys.usb.state ${sys.usb.config}
 
+on property:sys.usb.config=midi
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 04e8
+    write /sys/class/android_usb/android0/idProduct 686C
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=midi,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 04e8
+    write /sys/class/android_usb/android0/idProduct 686C
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
 # rndis,acm,diag and diag,acm,adb used for Hidden Menu
 
 on property:sys.usb.config=rndis,diag
@@ -263,6 +280,40 @@ on property:sys.usb.config=mtp,conn_gadget,adb
     write /sys/class/android_usb/android0/idProduct 6860
     write /sys/class/android_usb/android0/functions ${sys.usb.config}
     write /sys/class/android_usb/android0/bDeviceClass 0
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=sec_charging
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 04E8
+    write /sys/class/android_usb/android0/idProduct 6860
+    write /sys/class/android_usb/android0/functions mtp
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=sec_charging,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 04E8
+    write /sys/class/android_usb/android0/idProduct 6860
+    write /sys/class/android_usb/android0/functions mtp,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=vzw_charging
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 04E8
+    write /sys/class/android_usb/android0/idProduct 6860
+    write /sys/class/android_usb/android0/functions mtp
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=vzw_charging,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 04E8
+    write /sys/class/android_usb/android0/idProduct 6860
+    write /sys/class/android_usb/android0/functions mtp,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state ${sys.usb.config}

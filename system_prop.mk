@@ -2,6 +2,10 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1
 
+# Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bt.bdaddr_path="/efs/bluetooth/bt_addr"
+
 # Bluetooth workaround:
 # The new CAF code defaults to MCT HAL, but we
 # need the old H4 HAL for our Broadcom WiFi.
@@ -10,13 +14,23 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Dalvik/Art
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.fw.dex2oat_thread_count=4 \
-    dalvik.vm.heapstartsize=16m \
+    dalvik.vm.heapstartsize=8m \
     dalvik.vm.heapgrowthlimit=192m \
     dalvik.vm.heapsize=512m \
     dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=2m \
+    dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
+
+# Display
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bq.gpu_to_cpu_unsupported=1 \
+    ro.opengles.version=196609 \
+    ro.sf.lcd_density=320
+
+# Hwc - not used on cm/aosp
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.hwc.winupdate=1 \
+    debug.hwc.otf=1
 
 # Hwui
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -31,8 +45,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_small_cache_width=1024 \
     ro.hwui.text_small_cache_height=1024 \
     ro.hwui.text_large_cache_width=4096 \
-    ro.hwui.text_large_cache_height=2048 \
-    ro.hwui.fbo_cache_size=16
+    ro.hwui.text_large_cache_height=2048
 
 # Media/OMX
 PRODUCT_PROPERTY_OVERRIDES += \
