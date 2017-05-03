@@ -12,3 +12,6 @@ type seiren_device, dev_type;
 
 # /dev/s5p-smem
 type secmem_device, dev_type;
+
+# /dev/vfsspi
+type fingerprint_device, dev_type;
