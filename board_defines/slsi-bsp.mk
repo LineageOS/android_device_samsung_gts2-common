@@ -1,7 +1,3 @@
-# Samsung LSI BSP
-# Mixer
-BOARD_USE_BGRA_8888 := true
-
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
