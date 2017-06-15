@@ -47,11 +47,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_large_cache_width=4096 \
     ro.hwui.text_large_cache_height=2048
 
-# Media/OMX
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.legacyencoder=1 \
-    media.stagefright.less-secure=1
-
 # Network
 # Define default initial receive window size in segments.
 PRODUCT_PROPERTY_OVERRIDES += \
