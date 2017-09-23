@@ -97,3 +97,6 @@
 /system/bin/wifiloader       u:object_r:wifiloader_exec:s0
 
 /system/bin/gpsd             u:object_r:gpsd_exec:s0
+
+# OTA
+/dev/block/platform/15540000.dwmmc0/by-name/OTA             u:object_r:misc_block_device:s0

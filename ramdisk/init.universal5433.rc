@@ -67,6 +67,10 @@ on post-fs-data
     # Default to 90% vibrator strength
     write /sys/devices/virtual/timed_output/vibrator/intensity 9000
 
+    # Create directory for OTA
+    mkdir /data/OTA 0771
+    chown system system /data/OTA
+
 on boot
     # Reduce reserved lowmem from ~48MB to ~12MB
     write /proc/sys/vm/lowmem_reserve_ratio "128 128"
