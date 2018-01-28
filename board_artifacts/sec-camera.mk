@@ -1,6 +1,7 @@
 # Packages
 PRODUCT_PACKAGES += \
     camera.universal5433 \
+    libcamera_client_shim \
     libstagefright_shim
 
 # Permissions
