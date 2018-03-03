@@ -67,6 +67,8 @@
 # mobicore
 /data/misc/mcRegistry(/.*)?  u:object_r:tee_data_file:s0
 
+/data/biometrics(/.*)?       u:object_r:fingerprintd_data_file:s0
+
 ####################################
 # sysfs files
 /sys/class/power_supply/battery/music -- u:object_r:sysfs_writable:s0
