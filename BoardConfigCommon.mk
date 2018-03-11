@@ -41,7 +41,7 @@ TW_EXCLUDE_SUPERSU := true
 endif
 
 # SELinux
-BOARD_SEPOLICY_DIRS += device/samsung/gts2-common/sepolicy
+BOARD_SEPOLICY_DIRS := device/samsung/gts2-common/sepolicy
 
 # Seccomp filters
 BOARD_SECCOMP_POLICY := device/samsung/gts2-common/seccomp
